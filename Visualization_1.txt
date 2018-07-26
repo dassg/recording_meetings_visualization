@@ -34,3 +34,5 @@ Level 1 Visualization
 			https://github.com/commodityvectors/d3-timeline
 			https://github.com/marmelab/EventDrops
 			http://romsson.github.io/dragit/example/nations.html --> Leaning in this direction
+			
+        10. Possible issue, although very likely we will not face this. When expanding radius of circles in conversations, suppose there is a scenario where people who are assigned nearby locations are talking for long durations, this could lead to overlapping / meeting of circles if not careful. Possible Scaling of whole canvas might be necessary in that case. Will try to account for this.
