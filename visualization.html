@@ -136,7 +136,7 @@
         // and highlight them
         
         function currently(data,i) {
-            if(currentlySpeaking) {
+            if(currentlySpeaking) {		// this might come in handy so not removing
             
                 data[i].style("stroke", "red")
                         .style("stroke-width", "10px");
@@ -159,7 +159,7 @@
              
         function previously(data,svgC,x_r,y_r,i) // ,sti) 
         {
-            if(previouslySpoke) {
+            if(previouslySpoke) {		// this might come in handy so not removing
                 data[i].style("stroke", "lightpink")
                         .style("stroke-width", "5px");
                 data[i].style("fill", colors[5]);
