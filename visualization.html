@@ -97,7 +97,7 @@
         currently(circleData,4);
         previously(circleData, svgContainer, x_1,y_1,3);
 		previously_remove(svgContainer);
-        timeSpoke(12, circleData,5);
+        timeSpoke(30, circleData,5,10);
 
 
         // function will be passed the id of the person currently speaking
@@ -163,9 +163,14 @@
         // and change the size of the node proportionally to the amount
         // of time
         // function will also be passed id of person who spoke
-        function timeSpoke(time, data,i) {
+       
+	function timeSpoke(timsec, data,i,ret) {
             // currentRad = data[2].r;
-            data[i].attr("r", (currentRad + (time * .25)));
+            var rad = parseInt(data[i].attr("r"));
+            // increase one unit of radius every minute
+            // every second then increases 1/60th of a unit, slow progression
+            // assuming all individual conversation snippets do not exceed 15-20 seconds??
+            data[i].attr("r", (rad + 1*(ret*timsec/60) ));
         }
         
     </script>
