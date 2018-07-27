@@ -22,8 +22,8 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script>
         // arbitrarily sets width, height, and diameter
-        var width = 770;
-        var height = 940;
+        var width = 750;
+        var height = 750;
         var diameter = 760;
 
         // controls the number of nodes
@@ -46,12 +46,17 @@
 
         // controls radius of circle the nodes are around
         var radius = 150;
+      // The area of all circles should only account for 75.36% of the total canvas area 
+      // The radius is calculated from that
+      
+        var radius = Math.sqrt((0.7536 * width * height)/(3.14*numParticipants));
+      
 
         // creates container that the nodes are in with specific attributes
         var svgContainer = d3.select("body")
                             .append("svg")
-                            .attr("width", 750)
-                            .attr("height", 750)
+                            .attr("width", width)
+                            .attr("height", height)
                             .style("border", "1px solid black");
 
 
@@ -136,15 +141,14 @@
         // and highlight them
         
         function currently(data,i) {
-            if(currentlySpeaking) {		// this might come in handy so not removing
+            if(currentlySpeaking) {
             
                 data[i].style("stroke", "red")
                         .style("stroke-width", "10px");
             participantSpeak[i]++;
-            var default_scale = d3.scaleQuantize().domain([0, 50]).range(['blue','red']);
+            var default_scale = d3.scaleQuantize().domain([0, 100]).range(['white', 'beige', 'blue', 'red']);
             // syntax as seen on http://jonathansoma.com/tutorials/d3/color-scale-examples/
-		// A simple color scale created using quantization over 50 values, representing the scale going from blue to red
-		// TODO: Different nodes will have different color scales??
+
             data[i].style("fill",default_scale(i));
             
             }
@@ -159,7 +163,7 @@
              
         function previously(data,svgC,x_r,y_r,i) // ,sti) 
         {
-            if(previouslySpoke) {		// this might come in handy so not removing
+            if(previouslySpoke) {
                 data[i].style("stroke", "lightpink")
                         .style("stroke-width", "5px");
                 data[i].style("fill", colors[5]);
