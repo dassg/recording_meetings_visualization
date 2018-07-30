@@ -9,11 +9,9 @@
             font-family: HelvNeueLightForIBM, Helvetica Neue, Arial, Helvetica, sans-serif;
             text-align: left;
         }
-
         body {
             background-color: white;
         }
-
     </style>
     <title>Visualization</title>
 </head>
@@ -21,137 +19,200 @@
     <h1>Meeting Analysis</h1>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script>
+        // var ourRequest = new XMLHttpRequest();
+        // ourRequest.open('GET', *********FILE_LOCATION***************)
+        // ourRequest.onload = function(){
+        //     var RAWJSON_INFO=JSON.parse(ourRequest.responseText);
         // arbitrarily sets width, height, and diameter
-        var width = 750;
-        var height = 750;
+        
+        
+        ////////// TODO: Concrete method to read in data
+        
+        //////////////////////////////////////////////////////////////////////////
+        // test_data
+        
+        var test_data = [
+        {speech:"this is a test",time:2,userID:0},
+        {speech:"This is a test but this needs to be something long",time:5,userID:1},
+        {speech:"The test string is a good thing to use for development",time:6,userID:2},
+        {speech:"A complex sentence is a sentence that contains an independent clause and one or more dependent clauses. An independent clause can stand alone as a sentence, but a dependent clause even though it has a subject and a verb cannot stand alone.",time:10,userID:1},
+        {speech:"JavaScript also defines two trivial data types, null and undefined, each of which defines only a single value. In addition to these primitive data types, JavaScript supports a composite data type known as object. We will cover objects in detail in a separate chapter. Note − JavaScript does not make a distinction between integer values and floating-point values. All numbers in JavaScript are represented as floating-point values. JavaScript represents numbers using the 64-bit floating-point format defined by the IEEE 754 standard.",time:15,userID:1},
+        {speech:"Now, imagine the challenge for Facebook. Facebook deals with enormous amount of text data on a daily basis in the form of status updates, comments etc. And it is all the more important for Facebook to utilise this text data to ",time:4,userID:3},
+        {speech:"This library has gained a lot of traction in the NLP community and is a possible substitution to the gensim ",time:2,userID:4},
+        {speech:"low magnitude. But FastText can produce vectors better than random by breaking the above word in chunks and using the vectors for those chunks to create a final vector for the word. In this particular",time:3,userID:5},
+        {speech:"Words in their natural form cannot be used for any Machine Learning task in general. One way to use the words is to transform these words into some representations that capture some attributes of the word. It is analogous",time:3,userID:5}
+        ];        
+        //////////////////////////////////////////////////////////////////////////
+        
+        //////////////////////////////////////////////////////////////////////////
+        /// TODO: (Not applicable to live data) After reading in data from various files, incorporate in all files into a single variable with all correlated speech and corresponding user ID's (including labeling which user says what and assigning a user id for every user and collecting it all into a variable as seen above), will depend on how we read the data, person by person? that is data comes in one person at a time? or multiple entries of people?
+        
+        // For now assuming implementing for one person at a time, that is, records of two people kept, the one who is speaking and the one who was previously speaking. The number of people is assumed to be known. The other data like the times someone spoke is accumulated though.
+        
+        // NOTE: Assuming no new users suddenly join in, focusing on getting a simple functionality working
+        
+        var width = 770;
+        var height = 940;
         var diameter = 760;
-
         // controls the number of nodes
         // will read from Json file
         var numParticipants = 6;
         var participantSpeak = [];
-        var k;
-        for(k = 0; k < numParticipants; k++){participantSpeak[k] = 0;}
-
+        var participantTime = test_data.map(tra => tra.time);
+        var contsignal = true;
+        
+        var currentSpeaker = [];
+        var previousSpeaker = [];
+        
+        // Although we can determine the number of times someone spoke from the test data we have, we are assuming that we will be using live data in the end, hence also assuming that we don't have that information at this point
+        
+        // var common_scale = d3.scaleQuantize().domain([0, 50]).range(['white','blue']);
+        var k, i;
+        for(k = 0; k < numParticipants; k++){
+            participantSpeak[k] = 0;
+        }
         // array of circles
         var circleData = [];
-        var angle = 0;
-        var x = 0;
-        var x_1 = [];
-        var y = 0;
-        var y_1 = [];
-        
-        var alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"];
-        var colors = ["gainsboro", "lightgray", "silver", "darkgray", "gray", "dimgray", "lightslategray", "slategray", "darkslategray", "black"];
 
+        var tooltip = d3.select("body")
+                        .append("div")
+                        .style("position", "absolute")
+                        .style("z-index", "10")
+                        .style("visibility", "hidden")
+                        .style("color", "white")
+                        .style("padding", "8px")
+                        .style("background-color", "rgba(0, 0, 0, 0.50)")
+                        .style("border-radius", "6px")
+                        .style("font", "12px sans-serif")
+                        .text("tooltip");
+
+        var itr = 0;
+        var alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+        //http://bl.ocks.org/jfreyre/b1882159636cc9e1283a
+        var colors = d3.scaleLinear().domain([1,50])
+                            .interpolate(d3.interpolateHcl)
+                            .range([d3.rgb("#FFFFFF"), d3.rgb('#191970')])
         // controls radius of circle the nodes are around
         var radius = 150;
-      // The area of all circles should only account for 75.36% of the total canvas area 
-      // The radius is calculated from that
-      
-        var radius = Math.sqrt((0.7536 * width * height)/(3.14*numParticipants));
-      
-
         // creates container that the nodes are in with specific attributes
         var svgContainer = d3.select("body")
                             .append("svg")
-                            .attr("width", width)
-                            .attr("height", height)
+                            .attr("width", 750)
+                            .attr("height", 750)
                             .style("border", "1px solid black");
 
-
-        // loops through for each participant and creates a node
+        circleData = initial_draw(svgContainer,numParticipants,circleData);
+        
+        // start infinite loop here to update display over and over again
+        
+        do 
+        {
+        
+        currentSpeaker = test_data[itr];      // NOTE: If live data, this is where the data would be read
+        
+        
+        if(itr != 0) // not the first iteration
+        {
+        
+        }
+        
+        
+        
+        
+        previousSpeaker = currentSpeaker; // speaker update
+        
+        sleep (100); // display delay, otherwise not possible to display data, NOTE: REMOVE IF USED WITH LIVE DATA
+        
+        // if(END_CONDITION) {contsignal = false};
+        
+        itr++;
+        } while(0) // (contsignal)
+        
+        
+        function initial_draw(svgContainer,numParticipants,circleData)
+        {
+        
+                // loops through for each participant and creates a node
         // and evenly spaces the nodes around the circle
         // in the future will use location data from Json to place people (Will need to generate relative coordinates in 2D unless the visualization is done in 3D)
         // also need to attach ID to each node
-        for(var i = 0; i < numParticipants; i++) 
+        for(i = 0; i < numParticipants; i++) 
         {
             // formula from here http://bl.ocks.org/bycoffe/3404776
+            var angle = 0;
+            var x = 0;
+            var x_1 = [];
+            var y = 0;
+            var y_1 = [];
             angle = (i / (numParticipants/2)) * Math.PI;
             x = (radius * Math.cos(angle)) + (width/2);
             y = (radius * Math.sin(angle)) + (width/2);
-
 			x_1.push( ((radius+8) * Math.cos(angle)) + (width/2) );
             y_1.push( ((radius+8) * Math.sin(angle)) + (width/2) );
-
             var circle = svgContainer.append("circle")
                                 .attr("cx", x)
                                 .attr("cy", y)
                                 .attr("r", 25)
-                                .attr("id", alpha[i])
+                                .attr("id", i)
                                 .style("stroke", "black")
-                                .style("fill", colors[0]);
+                                .style("fill",colors(0))
+                                .style("padding", 2)
+                                .on("mouseover", function(d, id) {
+                                    return tooltip.text("Times Spoken: " + parseInt(participantSpeak[id]) + " Total Time: "  + parseInt(participantTime[i]))
+                                                .style("visibility", "visible");
+                                })
+                                .on("mousemove", function() {
+                                    return tooltip.style("top", (d3.event.pageY-10)+"px")
+                                                .style("left",(d3.event.pageX+10)+"px");
+                                })
+                                .on("mouseout", function() {
+                                    return tooltip.style("visibility", "hidden");
+                                })
             
             circleData.push(circle);
 
-            console.log(circleData[i].id);
+            var id = parseInt(circleData[i].attr("id"));
 
             var text = svgContainer.append("text")
                                 .attr("x", x)
                                 .attr("y", y + 6)
-                                .text(alpha[i])
+                                .text(alpha[id])
                                 .attr("font-family", "san-serif")
                                 .attr("font-size", "20px")
                                 .attr("fill", "black")
-                                .attr("text-anchor", "middle");
+                                .attr("text-anchor", "middle")
+                                .on("mouseover", function(d, id) {
+                                    return tooltip.text("Times Spoken: " + parseInt(participantSpeak[id]) + " Total Time: " + parseInt(participantTime[i]))
+                                                .style("visibility", "visible");
+                                })
+                                .on("mousemove", function() {
+                                    return tooltip.style("top", (d3.event.pageY-10)+"px")
+                                                .style("left",(d3.event.pageX+10)+"px");
+                                })
+                                .on("mouseout", function() {
+                                    return tooltip.style("visibility", "hidden");
+                                })
                
             
         }
 
-        var currentlySpeaking = true;
-        var previouslySpoke = true;
-        var currentRad = 40;
-        
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        currently(circleData,4);
-        
-        
-        
-        currently(circleData,3);
-        currently(circleData,3);
-        currently(circleData,3);
-        
-        
-        
-        previously(circleData, svgContainer, x_1,y_1,3);
-		previously_remove(svgContainer);
-        timeSpoke(30, circleData,5,10);
-
-
+        return circleData;
+        }
+                            
         // function will be passed the id of the person currently speaking
         // and highlight them
         
         function currently(data,i) {
-            if(currentlySpeaking) {
-            
                 data[i].style("stroke", "red")
                         .style("stroke-width", "10px");
             participantSpeak[i]++;
-            var default_scale = d3.scaleQuantize().domain([0, 100]).range(['white', 'beige', 'blue', 'red']);
+            // 
             // syntax as seen on http://jonathansoma.com/tutorials/d3/color-scale-examples/
-
-            data[i].style("fill",default_scale(i));
+		    // A simple color scale created using quantization over 50 values, representing the scale going from blue to red
+		    // TODO: Different nodes will have different color scales??
+            data[i].style("fill",colors(participantSpeak[i]));
             
-            }
+
         }
         
         // function will be passed the id of the person who
@@ -163,10 +224,11 @@
              
         function previously(data,svgC,x_r,y_r,i) // ,sti) 
         {
-            if(previouslySpoke) {
+
+            timeSpoke(150,data,i,10);
                 data[i].style("stroke", "lightpink")
                         .style("stroke-width", "5px");
-                data[i].style("fill", colors[5]);
+                // data[i].style("fill", colors[5]);
                
        //        var ls = sti.length;
        // TODO: After succesfully obtaining transcript data, get character count
@@ -183,7 +245,8 @@
                 .attr("height", 30)
                 .attr("stroke","black")
                 .attr("fill","none")
-                .attr("id","rect_box");
+                .attr("id","rect_box")
+                .attr("border", "1px solid black");
                 
                 
                 svgC.append("text")
@@ -193,25 +256,28 @@
                 .text("hello");
                 
                
-            }
+        
         }
-
 		// Remove the text box for use with other transcript elements 
-
        function previously_remove(svgC)
        {
             svgC.select("#rect_box").remove();
             svgC.select("#text_box").remove();    
        }
-
         // function will be passed the amount of time someone spoke in seconds
         // and change the size of the node proportionally to the amount
         // of time
         // function will also be passed id of person who spoke
+
+        function remPreviouslySpoke(data, i) {
+            data[i].style("stroke", "black");
+            data[i].style("stroke-width", "1px");
+        }
        
 	function timeSpoke(timsec, data,i,ret) 
     {
             // currentRad = data[2].r;
+            participantTime[i]+= timsec;
             var rad = parseInt(data[i].attr("r"));
             // increase one unit of radius every minute
             // every second then increases 1/60th of a unit, slow progression
@@ -219,6 +285,7 @@
             data[i].attr("r", (rad + 1*(ret*timsec/60) ));
         }
         
+        // ourRequest.send();
     </script>
     
 </body>
