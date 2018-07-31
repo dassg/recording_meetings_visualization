@@ -126,7 +126,9 @@
         
         var rad_mat = math.zeros(numParticipants,time_values.length),color_mat = math.zeros(numParticipants,time_values.length), curr_mat = math.zeros(numParticipants,time_values.length),prev_mat = math.zeros(numParticipants,time_values.length);
       
-        generate_data();
+        generate_data(100);
+      
+        document.write(rad_mat.length);
       
         var timeline = d3.sliderHorizontal()
           .min(0)
@@ -166,15 +168,19 @@
           
             if(t > time_values[0])
             {
-            prev_mat.subset(math.index(test_data[j].userID,t)) = 1;  // previous speaker for that instant
+             prev_mat.subset(math.index(test_data[j].userID,t),1);  // previous speaker for that instant
+            //  prev_mat[test_data[j].userID][t] = 1;
             }
-            
-          curr_mat.subset(math.index(test_data[j].userID,t)) = 1;
+            // A[1][2]=0
+           curr_mat.subset(math.index(test_data[j].userID,t),1);
+           // curr_mat[test_data[j].userID][t] = 1;
             
           }
         
-          rad_mat.subset(math.index(test_data[j].userID,t)) = (radius + 1*(ret*(t/60)));
-          color_mat.subset(math.index(test_data[j].userID,t)) = color(search_for_instances(time_acc,t,test_data[j].userID)); 
+          rad_mat.subset(math.index(test_data[j].userID,t),(radius + 1*(ret*(t/60))));
+          // rad_mat[test_data[j].userID][t] = radius + 1*(ret*(t/60));
+          color_mat.subset(math.index(test_data[j].userID,t),color(search_for_instances(time_acc,t,test_data[j].userID))); 
+          // color_mat[test_data[j].userID][t] = color(search_for_instances(time_acc,t,test_data[j].userID));
         }
       }
       
@@ -387,7 +393,7 @@
         
         // Anyone who may have spoken previously will have their transcript 
         // displayed next to them in a text box
-             
+        t
         function previously(i) // ,sti) 
         {
 
