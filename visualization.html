@@ -114,7 +114,7 @@
                             .attr("width", 750)
                             .attr("height", 750)
                             .style("border", "1px solid black");
-    //    get_curr_speaking();
+        get_curr_speaking();
         initial_draw(svgContainer,numParticipants,circleData);
         
         var step_value = 1;
@@ -126,7 +126,7 @@
         
         var rad_mat = math.zeros(numParticipants,time_values.length),color_mat = math.zeros(numParticipants,time_values.length), curr_mat = math.zeros(numParticipants,time_values.length),prev_mat = math.zeros(numParticipants,time_values.length);
       
-     //   generate_data();
+        generate_data();
       
         var timeline = d3.sliderHorizontal()
           .min(0)
@@ -150,19 +150,16 @@
         // currently(i,timesec,ret,rad); 
         // start infinite loop here to update display over and over again
     
-      function generate_data(ret)    // generate data
+    function generate_data(ret)    // generate data
       {
       
-        var k,j,t, ity;
+        var k,j,t,ity;
         
       for(t = 0; t < total_time_num; t++)  
       {
-      
-        for(k = 0; k < numParticipants; k++)
-      {
         for(j = 0; j < test_data.length; j++)
         {
-          if(search_list(time_acc,t) == j)      // current speaker
+          if(search_list(time_acc,t) == j)      // current speaker (which segment of the conversation the time instant is from?)
           {
           
             if(t > time_values[0])
@@ -171,15 +168,13 @@
             }
             
           curr_mat.subset(math.index(test_data[j].userID,t)) = 1;
-            
+          rad_mat.subset(math.index(test_data[j].userID,t)) = (radius + 1*(ret*(t/60)));    // radius changes only when talking
+          color_mat.subset(math.index(test_data[j].userID,t)) = color(search_for_instances(time_acc,t,test_data[j].userID)); // color changes when talking
           }
         
-          rad_mat.subset(math.index(test_data[j].userID,t)) = (radius + 1*(ret*(t/60)));
-          color_mat.subset(math.index(test_data[j].userID,t)) = color(search_for_instances(time_acc,t,test_data[j].userID)); 
         }
       }
-      
-      } 
+       
         
       }
       
