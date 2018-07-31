@@ -134,7 +134,7 @@
           .step(1)
           .width(300)
           .on('onchange', slider_value => {
-            d3.select("p#time_value").text(slider_value);
+            print_all_figures(slider_value);
           });
 
         var g = d3.select("div#time_line").append("svg")
@@ -145,21 +145,23 @@
 
         g.call(timeline);
 
-
         //currently(0,timeSpoken[0],100,parseInt(circleData[0].attr("r")));
         // currently(i,timesec,ret,rad); 
         // start infinite loop here to update display over and over again
     
-    function generate_data(ret)    // generate data
+      function generate_data(ret)    // generate data
       {
       
-        var k,j,t,ity;
+        var k,j,t, ity;
         
       for(t = 0; t < total_time_num; t++)  
       {
+      
+        for(k = 0; k < numParticipants; k++)
+      {
         for(j = 0; j < test_data.length; j++)
         {
-          if(search_list(time_acc,t) == j)      // current speaker (which segment of the conversation the time instant is from?)
+          if(search_list(time_acc,t) == j)      // current speaker
           {
           
             if(t > time_values[0])
@@ -168,14 +170,41 @@
             }
             
           curr_mat.subset(math.index(test_data[j].userID,t)) = 1;
-          rad_mat.subset(math.index(test_data[j].userID,t)) = (radius + 1*(ret*(t/60)));    // radius changes only when talking
-          color_mat.subset(math.index(test_data[j].userID,t)) = color(search_for_instances(time_acc,t,test_data[j].userID)); // color changes when talking
+            
           }
         
+          rad_mat.subset(math.index(test_data[j].userID,t)) = (radius + 1*(ret*(t/60)));
+          color_mat.subset(math.index(test_data[j].userID,t)) = color(search_for_instances(time_acc,t,test_data[j].userID)); 
         }
       }
-       
+      
+      } 
         
+      }
+      
+      function print_all_figures(t)
+      {
+      
+        var h;
+        
+        for(h = 0; h < numParticipants; h++)
+        {
+          if(curr_mat.get([h,t]) == 1)
+          {
+          currently(h);
+          update_color_radius(colo_mat.get([h,t]),rad_mat.get([h,t]),h);
+          }
+          else if(prev_mat.get([h,t]) == 1)
+          {
+          previously(h);        
+          }
+          else
+          {
+          not_currently_previous(h);
+          }
+          
+        }
+      
       }
       
       function initial_draw(svgContainer,numParticipants,circleData)
@@ -250,7 +279,7 @@
         // function will be passed the id of the person currently speaking
         // and highlight them
         
-      function search_list(lis,ele)
+      function search_list(lis,ele)        // searches for which sector the time instant belongs to (the sectors are divided by the conversation snippets)
       {
         var i;
         
@@ -345,7 +374,7 @@
       }
       
       
-      function update_color(colo,newrad,i)
+      function update_color_radius(colo,newrad,i)
       {
            circleData[i]
             .attr("fill",colo)
