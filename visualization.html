@@ -73,6 +73,7 @@
         var participantSpeak = [];
         var participantTime = [];
         var timeSpoken = test_data.map(tra => tra.time);
+        var userID_test = test_data.map(tra => tra.userID);
         var contsignal = true;
         
         var currentSpeaker = [];
@@ -105,7 +106,7 @@
         //http://bl.ocks.org/jfreyre/b1882159636cc9e1283a
         var colors = d3.scaleLinear().domain([1,50])
                             .interpolate(d3.interpolateHcl)
-                            .range([d3.rgb("#FFFFFF"), d3.rgb('#191970')])
+                            .range([d3.rgb("#FFFFFF"), d3.rgb('#191970')]);
         // controls radius of circle the nodes are around
         var radius = 150;
         // creates container that the nodes are in with specific attributes
@@ -128,25 +129,28 @@
       
         generate_data(100);
       
-        document.write(rad_mat.length);
+     //   document.write(rad_mat.length);
       
-        var timeline = d3.sliderHorizontal()
-          .min(0)
-          .max(parseInt(timeSpoken.reduce(reduction)))
-          .step(1)
-          .width(300)
-          .on('onchange', slider_value => {
-            print_all_figures(slider_value);
-          });
+//         var timeline = d3.sliderHorizontal()
+//           .min(0)
+//           .max(parseInt(timeSpoken.reduce(reduction)))
+//           .step(1)
+//           .width(300)
+//           .on('onchange', slider_value => {
+//             print_all_figures(slider_value);
+//           });
 
-        var g = d3.select("div#time_line").append("svg")
-          .attr("width", 500)
-          .attr("height", 100)
-          .append("g")
-          .attr("transform", "translate(10,10)");
+//         var g = d3.select("div#time_line").append("svg")
+//           .attr("width", 500)
+//           .attr("height", 100)
+//           .append("g")
+//           .attr("transform", "translate(10,10)");
 
-        g.call(timeline);
+//         g.call(timeline);
 
+      
+      print_all_figures(10);
+      
         //currently(0,timeSpoken[0],100,parseInt(circleData[0].attr("r")));
         // currently(i,timesec,ret,rad); 
         // start infinite loop here to update display over and over again
@@ -154,7 +158,7 @@
       function generate_data(ret)    // generate data
       {
       
-        var k,j,t, ity;
+        var k,j,t,ity;
         
       for(t = 0; t < total_time_num; t++)  
       {
@@ -168,18 +172,18 @@
           
             if(t > time_values[0])
             {
-             prev_mat.subset(math.index(test_data[j].userID,t),1);  // previous speaker for that instant
+             prev_mat.subset(math.index(userID_test[j],t),1);  // previous speaker for that instant
             //  prev_mat[test_data[j].userID][t] = 1;
             }
             // A[1][2]=0
-           curr_mat.subset(math.index(test_data[j].userID,t),1);
+           curr_mat.subset(math.index(userID_test[j],t),1);
            // curr_mat[test_data[j].userID][t] = 1;
             
           }
         
-          rad_mat.subset(math.index(test_data[j].userID,t),(radius + 1*(ret*(t/60))));
+          rad_mat.subset(math.index(userID_test[j],t),(radius + 1*(ret*(t/60))));
           // rad_mat[test_data[j].userID][t] = radius + 1*(ret*(t/60));
-          color_mat.subset(math.index(test_data[j].userID,t),color(search_for_instances(time_acc,t,test_data[j].userID))); 
+          color_mat.subset(math.index(userID_test[j],t),colors(search_for_instances(time_acc,t,userID_test[j]))); 
           // color_mat[test_data[j].userID][t] = color(search_for_instances(time_acc,t,test_data[j].userID));
         }
       }
@@ -195,12 +199,12 @@
         
         for(h = 0; h < numParticipants; h++)
         {
-          if(curr_mat.get([h,t]) == 1)
+          if(curr_mat.subset(math.index(h,t)) == 1)
           {
           currently(h);
-          update_color_radius(colo_mat.get([h,t]),rad_mat.get([h,t]),h);
+          update_color_radius(colo_mat.subset(math.index(h,t)),rad_mat.subset(math.index(h,t)),h);
           }
-          else if(prev_mat.get([h,t]) == 1)
+          else if(prev_mat.subset(math.index(h,t)) == 1)
           {
           previously(h);        
           }
@@ -314,7 +318,7 @@
       {
       var i; 
       var cnt = 0; 
-        if(tim <= test_data[0].time && userID == test_data[0].userID )
+        if(tim <= test_data[0].time && userID == userID_test[0] )
         {
         cnt++; 
         }
@@ -323,7 +327,7 @@
          {
           if(lis[i] < tim)
           {
-            if(test_data[i].userID == userID)
+            if(userID_test[i] == userID)
             {
             cnt++;
             }
@@ -346,7 +350,7 @@
           for(p = 0; p < test_data.length; p++)
               {
                 
-              if(test_data[p].userID == i) 
+              if(userID_test[p] == i) 
               {
                  participantSpeak[i]++;
               }
@@ -393,7 +397,7 @@
         
         // Anyone who may have spoken previously will have their transcript 
         // displayed next to them in a text box
-        t
+        
         function previously(i) // ,sti) 
         {
 
