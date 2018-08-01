@@ -75,7 +75,7 @@
         {
         participantTime[y] = 0;
         }
-        var default_scale = d3.scaleQuantize().domain([0, 30]).range(['white', 'beige', 'blue', 'red']);
+        var default_scale = d3.scaleQuantize().domain([0, 20]).range(['white', 'blue']);
 
         var timeSpoken = test_data.map(tra => tra.time);
         var time_acc = timeSpoken.slice();    
@@ -279,7 +279,8 @@
             participantSpeak[i]++;
             participantTime[i]+= timesec;
           
-            circleData[i].style("stroke","red")
+            circleData[i]
+            .style("stroke","red")
             .style("stroke-width", "5px");
          
             // increase one unit of radius every minute
@@ -290,7 +291,7 @@
             console.log(default_scale(participantTime[i]));
           
             circleData[i].transition()
-            .attr("fill",default_scale(participantTime[i]))
+            .style("fill",colors(participantTime[i]))
             .attr("r",newrad)
             .duration(timesec*1000)
             .on("end",function() {
