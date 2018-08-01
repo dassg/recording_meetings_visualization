@@ -20,11 +20,11 @@
 </head>
 <body>
   <h1>Meeting Analysis</h1>
-  <h2>Meeting Timeline</h2>
-  <h7>Time (in seconds): </h7>
+<!--   <h2>Meeting Timeline</h2> -->
+<!--   <h7>Time (in seconds): </h7>
     <p id="time_value"></p>
     <div id="time_line"></div>
-  
+   -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="https://unpkg.com/d3-simple-slider@0.2.1/build/d3-simple-slider.js"></script>
 
@@ -70,7 +70,19 @@
         var numParticipants = 6;
         var participantSpeak = [];
         var participantTime = [];
+        var y = 0;
+        for(y = 0; y < numParticipants;y++ )
+        {
+        participantTime[y] = 0;
+        }
+        var default_scale = d3.scaleQuantize().domain([0, 30]).range(['white', 'beige', 'blue', 'red']);
+
         var timeSpoken = test_data.map(tra => tra.time);
+        var time_acc = timeSpoken.slice();    
+        for(ui = 1; ui < timeSpoken.length; ui++) {time_acc[ui] = time_acc[ui-1] + time_acc[ui]};      //
+
+        var UID = test_data.map(tra => tra.userID);
+      
         var contsignal = true;
         
         var currentSpeaker = [];
@@ -115,53 +127,88 @@
 
         initial_draw(svgContainer,numParticipants,circleData);
       
-  var timeline = d3.sliderHorizontal()
-    .min(0)
-    .max(parseInt(timeSpoken.reduce(reduction)))
-    .step(1)
-    .width(300)
-    .on('onchange', slider_value => {
-      d3.select("p#time_value").text(slider_value);
-    });
+//   var timeline = d3.sliderHorizontal()
+//     .min(0)
+//     .max(parseInt(timeSpoken.reduce(reduction)))
+//     .step(1)
+//     .width(300)
+//     .on('onchange', slider_value => {
+//       d3.select("p#time_value").text(slider_value);
+//     });
 
-  var g = d3.select("div#time_line").append("svg")
-    .attr("width", 500)
-    .attr("height", 100)
-    .append("g")
-    .attr("transform", "translate(10,10)");
+//   var g = d3.select("div#time_line").append("svg")
+//     .attr("width", 500)
+//     .attr("height", 100)
+//     .append("g")
+//     .attr("transform", "translate(10,10)");
 
-  g.call(timeline);
+//   g.call(timeline);
         
       
         //currently(0,timeSpoken[0],100,parseInt(circleData[0].attr("r")));
         // currently(i,timesec,ret,rad); 
         // start infinite loop here to update display over and over again
+      var pad = 3;        // to display properly
+      
+      setTimeout(function() { do_curr(0);},0) 
+      setTimeout(function() { do_curr(1);},(time_acc[0] + pad)*1000) 
+      setTimeout(function() { do_curr(2);},(time_acc[1] + 2*pad)*1000) 
+      setTimeout(function() { do_curr(3);},(time_acc[2] + 3*pad)*1000) 
+      setTimeout(function() { do_curr(4);},(time_acc[3] + 4*pad)*1000) 
+      setTimeout(function() { do_curr(5);},(time_acc[4] + 5*pad)*1000) 
+      setTimeout(function() { do_curr(6);},(time_acc[5] + 6*pad)*1000) 
+      setTimeout(function() { do_curr(7);},(time_acc[6] + 7*pad)*1000) 
+      setTimeout(function() { do_curr(8);},(time_acc[7] + 8*pad)*1000)
+      console.log(100);
+      previously_remove();
+      
+
+      
+//       var varlar = false;
+//       var prevdata,currdata;
+//       var im = 0;
+//       for(im = 0; im < test_data.length; im++)
+//         {
+
+//       setTimeout(function() { do_curr(im);},timeSpoken[im]*1000)  
+    
+//         }
         
-        do 
-        {
-  
-        currently(itr,timeSpoken[itr],100,parseInt(circleData[itr].attr("r")));
-                
-        if(itr != 0) // not the first iteration, do not display previous speaker
-        {
-        previously_remove();
-        // previously(circleData[itr-1].attr("cx"),circleData[itr-1].attr("cy"),itr-1);
-        }
           
-        if(parseInt(test_data.length) == (itr + 1)) {break;};
-        // this is slightly redundant but made this way because in future the eng signal might be something else, for eg. stop reading from database
-        itr++;
-        wait_for_display(timeSpoken[itr]);
-        } while(true) // (contsignal)
+//           function keydownHandler(e) {
+
+//     }
+// }
+                
+        function do_curr(im)
+        {
         
-        
+        var H = UID[im];
+        currently(H,timeSpoken[im],100,parseInt(circleData[H].attr("r")));
+                
+        if(im != 0) // on the first iteration, do not display previous speaker
+        {
+        var K = UID[im-1];
+        previously_remove();
+        previously(circleData[K].attr("cx"),circleData[K].attr("cy"),K);
+        }
+          if(im >= 2)
+          {
+          var KL = UID[im-2];
+          console.log(KL);
+          circleData[KL].style("stroke", "black").style("stroke-width", "1px");
+          }
+           
+        }
+      
         function initial_draw(svgContainer,numParticipants,circleData)
         {
         
-                // loops through for each participant and creates a node
+        // loops through for each participant and creates a node
         // and evenly spaces the nodes around the circle
         // in the future will use location data from Json to place people (Will need to generate relative coordinates in 2D unless the visualization is done in 3D)
         // also need to attach ID to each node
+          
         for(i = 0; i < numParticipants; i++) 
         {
             // formula from here http://bl.ocks.org/bycoffe/3404776
@@ -240,10 +287,11 @@
             // assuming all individual conversation snippets do not exceed 15-20 seconds??
             var newrad = (rad + 1*(ret*timesec/60) );
 
+            console.log(default_scale(participantTime[i]));
+          
             circleData[i].transition()
-            .attr("fill",colors(participantSpeak[i]))
+            .attr("fill",default_scale(participantTime[i]))
             .attr("r",newrad)
-
             .duration(timesec*1000)
             .on("end",function() {
                 d3.select(this)
@@ -310,22 +358,11 @@
         // of time
         // function will also be passed id of person who spoke
       
-function wait_for_display(wait_times)
-{
-var iter_var = 0;
-fxn();
-
-    function fxn()     {
-    iter_var++;
-    
-    if(iter_var < wait_times)
-    {
-        setTimeout(fxn,1000);
-    }
-    
-}
-
-}
+            
+      function emp()
+      {
+      console.log("setTimeout()");
+      }
       
       function reduction(val,ele)
       {return val+ele;}
