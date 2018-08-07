@@ -1,0 +1,897 @@
+var speech = [{ 
+    "_id" : ObjectId("5b5f9595b3b55c557c1d06d6"), 
+    "speechId" : NumberInt(1), 
+    "start" : 1532990869.0574136, 
+    "end" : 1532990886.7032063, 
+    "text" : "Stellar map because it is much different from earth and it's a two hundred mile trip. ", 
+    "location" : [
+        -0.8267733147006124, 
+        0.3624002645247594, 
+        0.17993020065354282
+    ], 
+    "confidence" : 0.9885515681084996
+},
+{ 
+    "_id" : ObjectId("5b5f959eb3b55c557c1d0d6b"), 
+    "speechId" : NumberInt(2), 
+    "start" : 1532990878.348557, 
+    "end" : 1532990887.7214825, 
+    "text" : "So without it you would be basically lost. ", 
+    "location" : [
+        -0.8265324660692208, 
+        0.3619074853395206, 
+        0.18950884292493686
+    ], 
+    "confidence" : 0.9890794644555716
+},
+{ 
+    "_id" : ObjectId("5b5f95cab3b55c557c1d2d03"), 
+    "speechId" : NumberInt(3), 
+    "start" : 1532990922.713869, 
+    "end" : 1532990939.4042184, 
+    "text" : "And the other one is the style of map. So first you pull out the stellar map and you find out the direction you're going and then you jump up. ", 
+    "location" : [
+        0.7418094603290133, 
+        0.39778979459821107, 
+        0.8893028313451093
+    ], 
+    "confidence" : 0.9911173542095242
+},
+{ 
+    "_id" : ObjectId("5b5f95d4b3b55c557c1d33b3"), 
+    "speechId" : NumberInt(4), 
+    "start" : 1532990932.0548809, 
+    "end" : 1532990949.804395, 
+    "text" : "Any high because it's a moon and then you open up the oxygen tank and release the gas to the opposite direction. ", 
+    "location" : [
+        0.728830996798848, 
+        0.394327175534969, 
+        0.8797435054695942
+    ], 
+    "confidence" : 0.9897540233344333
+},
+{ 
+    "_id" : ObjectId("5b5f95ddb3b55c557c1d3a47"), 
+    "speechId" : NumberInt(5), 
+    "start" : 1532990941.2851865, 
+    "end" : "", 
+    "text" : "", 
+    "location" : [
+        0.7617214424487553, 
+        0.4098536412176348, 
+        0.9107375958105512
+    ], 
+    "confidence" : 0.986261189343819
+},
+{ 
+    "_id" : ObjectId("5b5f95deb3b55c557c1d3b05"), 
+    "speechId" : NumberInt(6), 
+    "start" : 1532990942.4181554, 
+    "end" : 1532990951.5557096, 
+    "text" : "And you're flying towards the mother ship ", 
+    "location" : [
+        0.774370890549106, 
+        0.40877691170995945, 
+        0.9016042142441832
+    ], 
+    "confidence" : 0.9869276257995832
+},
+{ 
+    "_id" : ObjectId("5b5f9616b3b55c557c1d625d"), 
+    "speechId" : NumberInt(7), 
+    "start" : 1532990998.39241, 
+    "end" : 1532991007.1370165, 
+    "text" : "But I think ", 
+    "location" : [
+        0.5425664268874342, 
+        0.38735791602246616, 
+        0.11169528881419745
+    ], 
+    "confidence" : 0.987192756303026
+},
+{ 
+    "_id" : ObjectId("5b5f9622b3b55c557c1d6aaa"), 
+    "speechId" : NumberInt(8), 
+    "start" : 1532991010.1300094, 
+    "end" : 1532991026.7335906, 
+    "text" : "Gon na be with a lot less forest and if you are from earth, so falling wouldn't be as much of a problem. ", 
+    "location" : [
+        0.5489415995709289, 
+        0.38885088145642266, 
+        0.11400971764777933
+    ], 
+    "confidence" : 0.9837389862794608
+},
+{ 
+    "_id" : ObjectId("5b5f962bb3b55c557c1d713e"), 
+    "speechId" : NumberInt(9), 
+    "start" : 1532991019.442097, 
+    "end" : "", 
+    "text" : "", 
+    "location" : [
+        0.5328029125660046, 
+        0.38908135031594904, 
+        0.10540330849249703
+    ], 
+    "confidence" : 0.9817771507521187
+},
+{ 
+    "_id" : ObjectId("5b5f966fb3b55c557c1d9f7a"), 
+    "speechId" : NumberInt(10), 
+    "start" : 1532991087.153316, 
+    "end" : 1532991097.3300896, 
+    "text" : "Two hundred miles is a lot and if you're all but like one little degree, you can end up somewhere. You know different, so you definitely need the ", 
+    "location" : [
+        0.5269036668786267, 
+        0.3864622202554698, 
+        0.11585158777564215
+    ], 
+    "confidence" : 0.983091371748016
+},
+{ 
+    "_id" : ObjectId("5b5f9670b3b55c557c1da026"), 
+    "speechId" : NumberInt(11), 
+    "start" : 1532991088.1017773, 
+    "end" : 1532991098.4600663, 
+    "text" : "Mad and oxygen and water and everything else I feel like you, don't need the exercise. I don't do that. ", 
+    "location" : [
+        0.5210126372380823, 
+        0.39237472148752617, 
+        0.1094297623821313
+    ], 
+    "confidence" : 0.9955552455361394
+},
+{ 
+    "_id" : ObjectId("5b5f9671b3b55c557c1da0c9"), 
+    "speechId" : NumberInt(12), 
+    "start" : 1532991089.002369, 
+    "end" : 1532991090.486398, 
+    "text" : "I think this ", 
+    "location" : [
+        0.518130435759438, 
+        0.3863842754609059, 
+        0.10882966114752282
+    ], 
+    "confidence" : 0.9958057835541072
+},
+{ 
+    "_id" : ObjectId("5b5f9671b3b55c557c1da12d"), 
+    "speechId" : NumberInt(13), 
+    "start" : 1532991089.574864, 
+    "end" : 1532991101.607645, 
+    "text" : "On the moon, of course, he eighteen people to get lost and not yet on someone discovered and mapped landscape, FAQ value, ", 
+    "location" : [
+        -0.9029518752672681, 
+        0.37728700303029983, 
+        0.2997000928132454
+    ], 
+    "confidence" : 0.9984490210586455
+},
+{ 
+    "_id" : ObjectId("5b5f9672b3b55c557c1da1d0"), 
+    "speechId" : NumberInt(14), 
+    "start" : 1532991090.486398, 
+    "end" : 1532991102.3805783, 
+    "text" : "Movies on something having them up is important and the gallons of water and the first aid kit again important too, because you don't know what can happen on the ", 
+    "location" : [
+        -0.9025803146958483, 
+        0.37735491203168237, 
+        0.29543777231696655
+    ], 
+    "confidence" : 0.9986193091020712
+},
+{ 
+    "_id" : ObjectId("5b5f9673b3b55c557c1da273"), 
+    "speechId" : NumberInt(15), 
+    "start" : 1532991091.3800077, 
+    "end" : 1532991106.627217, 
+    "text" : "Two hundred mile trip it might take days undefeated along route for whatever reason, even at the map off, you might be stranded. So ", 
+    "location" : [
+        -0.8921163506693938, 
+        0.37223123513056183, 
+        0.28763088866162995
+    ], 
+    "confidence" : 0.9975954016878503
+},
+{ 
+    "_id" : ObjectId("5b5f9675b3b55c557c1da3d3"), 
+    "speechId" : NumberInt(16), 
+    "start" : 1532991093.3258011, 
+    "end" : 1532991105.326696, 
+    "text" : "Anything essential to all your own survival is very ", 
+    "location" : [
+        -0.8960050481068864, 
+        0.37000810909576165, 
+        0.2895267697884335
+    ], 
+    "confidence" : 0.9972911259989408
+},
+{ 
+    "_id" : ObjectId("5b5f9684b3b55c557c1daef9"), 
+    "speechId" : NumberInt(17), 
+    "start" : 1532991108.8921583, 
+    "end" : 1532991126.4711297, 
+    "text" : "Can ride on the back of the house and feed him a water and oxygen and let him walk us ", 
+    "location" : [
+        0.8277425551811896, 
+        0.43757536431603333, 
+        0.8744865090899833
+    ], 
+    "confidence" : 0.9980429046963619
+},
+{ 
+    "_id" : ObjectId("5b5f968eb3b55c557c1db596"), 
+    "speechId" : NumberInt(18), 
+    "start" : 1532991118.226215, 
+    "end" : 1532991122.5286767, 
+    "text" : "Two hundred miles ", 
+    "location" : [
+        0.8222784969330804, 
+        0.42563244082417107, 
+        0.8627024944405781
+    ], 
+    "confidence" : 0.997975263072753
+},
+{ 
+    "_id" : ObjectId("5b5f96a1b3b55c557c1dc320"), 
+    "speechId" : NumberInt(19), 
+    "start" : 1532991137.2622607, 
+    "end" : 1532991152.533407, 
+    "text" : "Who masks of oxygen? So only two of these people are living, but you know there could be multiple people on the ship. I feel like ", 
+    "location" : [
+        -0.7521065736282722, 
+        0.40454998067884435, 
+        1.2200459734682072
+    ], 
+    "confidence" : 0.9720569205328483
+},
+{ 
+    "_id" : ObjectId("5b5f96aab3b55c557c1dc9bd"), 
+    "speechId" : NumberInt(20), 
+    "start" : 1532991146.5743659, 
+    "end" : 1532991162.7740107, 
+    "text" : "This is a serious problem if only two of the crew is get gets to survive. Who you choose, because I would shoot myself. Of course, ", 
+    "location" : [
+        -0.751245212959074, 
+        0.4023102958820041, 
+        1.2377079652675893
+    ], 
+    "confidence" : 0.9759978717807006
+},
+{ 
+    "_id" : ObjectId("5b5f96b6b3b55c557c1dd26d"), 
+    "speechId" : NumberInt(21), 
+    "start" : 1532991158.762742, 
+    "end" : 1532991174.584415, 
+    "text" : "Take the oxygen tank and then light it up with the fire match and then buyers, whoever gets burnt ", 
+    "location" : [
+        0.7782127648645759, 
+        0.40955921319636024, 
+        0.8708147536234687
+    ], 
+    "confidence" : 0.996926944740744
+},
+{ 
+    "_id" : ObjectId("5b5f96bcb3b55c557c1dd64c"), 
+    "speechId" : NumberInt(22), 
+    "start" : 1532991164.195209, 
+    "end" : 1532991170.5970821, 
+    "text" : "And then there ", 
+    "location" : [
+        0.5411205354362935, 
+        0.39428412625153925, 
+        0.14512664629975325
+    ], 
+    "confidence" : 0.9895770516621221
+},
+{ 
+    "_id" : ObjectId("5b5f96c0b3b55c557c1dd91c"), 
+    "speechId" : NumberInt(23), 
+    "start" : 1532991168.0449102, 
+    "end" : "", 
+    "text" : "", 
+    "location" : [
+        0.7917175065430139, 
+        0.40520235946674815, 
+        0.8960821385238087
+    ], 
+    "confidence" : 0.996926944740744
+},
+{ 
+    "_id" : ObjectId("5b5f96c8b3b55c557c1de1bf"), 
+    "speechId" : NumberInt(24), 
+    "start" : 1532991176.4593997, 
+    "end" : 1532991179.2918215, 
+    "text" : "I ", 
+    "location" : [
+        0.7805377713562504, 
+        0.4014456447492255, 
+        0.8688820007453151
+    ], 
+    "confidence" : 0.9967264553476776
+},
+{ 
+    "_id" : ObjectId("5b5f96cdb3b55c557c1de5c8"), 
+    "speechId" : NumberInt(25), 
+    "start" : 1532991181.1977227, 
+    "end" : 1532991190.062009, 
+    "text" : "Hey computer, oxen and guessing is compressed to sell ", 
+    "location" : [
+        0.5171083725783469, 
+        0.43212122654351115, 
+        0.1537968102019185
+    ], 
+    "confidence" : 0.9940794790151202
+},
+{ 
+    "_id" : ObjectId("5b5f96d6b3b55c557c1dec5c"), 
+    "speechId" : NumberInt(26), 
+    "start" : 1532991190.406088, 
+    "end" : 1532991207.5572047, 
+    "text" : "Everyone of the it's a explosion, cause accidents, very flammable income plus. Yes, ", 
+    "location" : [
+        0.5483590027494549, 
+        0.41668826717969754, 
+        0.13864588213372683
+    ], 
+    "confidence" : 0.9869842991562818
+},
+{ 
+    "_id" : ObjectId("5b5f96dfb3b55c557c1df2f9"), 
+    "speechId" : NumberInt(27), 
+    "start" : 1532991199.7102098, 
+    "end" : 1532991214.9823406, 
+    "text" : "Everyone would die, including you and it's even worse, because it's compressed oxygen so a lot more than there is usually ", 
+    "location" : [
+        0.5552019503028517, 
+        0.4148751161508372, 
+        0.14026653791259036
+    ], 
+    "confidence" : 0.9834934167936138
+},
+{ 
+    "_id" : ObjectId("5b5f96e8b3b55c557c1df98d"), 
+    "speechId" : NumberInt(28), 
+    "start" : 1532991208.9355178, 
+    "end" : 1532991225.3266668, 
+    "text" : "The elevator is a good idea, but I think what I'm guessing accrued, maybe like four and I I'm thinking about ", 
+    "location" : [
+        0.5304151859629491, 
+        0.4048988786092811, 
+        0.14015882457107806
+    ], 
+    "confidence" : 0.9889768912934062
+},
+{ 
+    "_id" : ObjectId("5b5f96f2b3b55c557c1e002a"), 
+    "speechId" : NumberInt(29), 
+    "start" : 1532991218.240625, 
+    "end" : 1532991234.34155, 
+    "text" : "For people, so you don't have to like hog the tank the whole time, so we carry it and you share like the breeding mask. ", 
+    "location" : [
+        0.5391258882304677, 
+        0.4167819290923194, 
+        0.15183348254608162
+    ], 
+    "confidence" : 0.9868757159464476
+},
+{ 
+    "_id" : ObjectId("5b5f96fbb3b55c557c1e06c7"), 
+    "speechId" : NumberInt(30), 
+    "start" : 1532991227.4988558, 
+    "end" : 1532991238.3757582, 
+    "text" : "And then it's like it's like two two pictures. ", 
+    "location" : [
+        0.555678578067887, 
+        0.4229763939885077, 
+        0.14196368659116124
+    ], 
+    "confidence" : 0.9852650408658274
+},
+{ 
+    "_id" : ObjectId("5b5f9709b3b55c557c1e10fa"), 
+    "speechId" : NumberInt(31), 
+    "start" : 1532991241.8265257, 
+    "end" : 1532991245.353091, 
+    "text" : "I think ", 
+    "location" : [
+        0.5691796301778735, 
+        0.4234016555885531, 
+        0.12111028235957687
+    ], 
+    "confidence" : 0.9760197939810973
+},
+{ 
+    "_id" : ObjectId("5b5f970db3b55c557c1e138c"), 
+    "speechId" : NumberInt(32), 
+    "start" : 1532991245.4508307, 
+    "end" : 1532991249.5827754, 
+    "text" : "Hey but yeah ", 
+    "location" : [
+        0.7697399862041504, 
+        0.39075225894066956, 
+        0.8868093209934871
+    ], 
+    "confidence" : 0.9874746741885765
+},
+{ 
+    "_id" : ObjectId("5b5f974db3b55c557c1e42e0"), 
+    "speechId" : NumberInt(33), 
+    "start" : 1532991309.5702949, 
+    "end" : 1532991325.578469, 
+    "text" : "In we could try to feed the engine with oxygen and tried to light it up and see if the ex ", 
+    "location" : [
+        0.7661907598771127, 
+        0.40768050813143725, 
+        0.9063501231082369
+    ], 
+    "confidence" : 0.9985700441533638
+},
+{ 
+    "_id" : ObjectId("5b5f9756b3b55c557c1e497d"), 
+    "speechId" : NumberInt(34), 
+    "start" : 1532991318.8564517, 
+    "end" : 1532991331.9244921, 
+    "text" : "Since takes us, I go far yeah just hope for the best ", 
+    "location" : [
+        0.7927679741698215, 
+        0.42075078049536657, 
+        0.9130931261940805
+    ], 
+    "confidence" : 0.9951033899819468
+},
+{ 
+    "_id" : ObjectId("5b5f9784b3b55c557c1e69cd"), 
+    "speechId" : NumberInt(35), 
+    "start" : 1532991364.383656, 
+    "end" : 1532991369.2286937, 
+    "text" : "We are aliens ", 
+    "location" : [
+        0.5551599470958125, 
+        0.40145938073043774, 
+        0.12907633925499057
+    ], 
+    "confidence" : 0.9997819975545206
+},
+{ 
+    "_id" : ObjectId("5b5f9789b3b55c557c1e6da3"), 
+    "speechId" : NumberInt(36), 
+    "start" : 1532991369.75728, 
+    "end" : 1532991383.7618144, 
+    "text" : "Teens, who don't need oxygen, we're only using oxygen to make his provisions? Maybe ", 
+    "location" : [
+        0.7637579896648189, 
+        0.3957284130037728, 
+        0.8789987905127898
+    ], 
+    "confidence" : 0.9735931793580928
+},
+{ 
+    "_id" : ObjectId("5b5f9797b3b55c557c1e778e"), 
+    "speechId" : NumberInt(37), 
+    "start" : 1532991383.7139432, 
+    "end" : 1532991391.3814294, 
+    "text" : "The action they live, a moon ", 
+    "location" : [
+        0.7901022311284904, 
+        0.41836925778072914, 
+        0.9568882081327674
+    ], 
+    "confidence" : 0.9764501540020326
+},
+{ 
+    "_id" : ObjectId("5b5f97b7b3b55c557c1e8e69"), 
+    "speechId" : NumberInt(38), 
+    "start" : 1532991415.8659282, 
+    "end" : 1532991431.7444496, 
+    "text" : "Well can, but we are since were aliens. We live on the moon and there's other aliens who owns other space. You ", 
+    "location" : [
+        0.8057057971033407, 
+        0.4291412668720286, 
+        0.9377665204838184
+    ], 
+    "confidence" : 0.9983816785692825
+},
+{ 
+    "_id" : ObjectId("5b5f97c1b3b55c557c1e9506"), 
+    "speechId" : NumberInt(39), 
+    "start" : 1532991425.1930075, 
+    "end" : 1532991441.241043, 
+    "text" : "It'S we just take other people's space ship and ride that space ship to the mother ship and we're not ", 
+    "location" : [
+        0.7892354103170628, 
+        0.41786866144910195, 
+        0.8915364667209984
+    ], 
+    "confidence" : 0.9950984575168057
+},
+{ 
+    "_id" : ObjectId("5b5f97cab3b55c557c1e9ba3"), 
+    "speechId" : NumberInt(40), 
+    "start" : 1532991434.4402378, 
+    "end" : 1532991437.6945307, 
+    "text" : "Yeah yeah ", 
+    "location" : [
+        0.7947041496920286, 
+        0.4170280247669491, 
+        0.8778405846127068
+    ], 
+    "confidence" : 0.9958997438523847
+},
+{ 
+    "_id" : ObjectId("5b5f97e2b3b55c557c1ead02"), 
+    "speechId" : NumberInt(41), 
+    "start" : 1532991458.8050559, 
+    "end" : 1532991476.7181332, 
+    "text" : "Still be like some something really big and twenty miles is just a foot away to us. Not just take one step into their two hundred move. ", 
+    "location" : [
+        0.5553826870023804, 
+        0.4101149851222152, 
+        0.197816355705614
+    ], 
+    "confidence" : 0.9862256917512344
+},
+{ 
+    "_id" : ObjectId("5b5f97ecb3b55c557c1eb396"), 
+    "speechId" : NumberInt(42), 
+    "start" : 1532991468.0912163, 
+    "end" : "", 
+    "text" : "", 
+    "location" : [
+        0.5483426835116095, 
+        0.4064519701801148, 
+        0.1739901249348025
+    ], 
+    "confidence" : 0.9827058335844787
+},
+{ 
+    "_id" : ObjectId("5b5f9800b3b55c557c1ec1f8"), 
+    "speechId" : NumberInt(43), 
+    "start" : 1532991488.287183, 
+    "end" : "", 
+    "text" : "", 
+    "location" : [
+        0.5191407592590744, 
+        0.39361022384756633, 
+        0.043741620504120615
+    ], 
+    "confidence" : 0.9811174786083796
+},
+{ 
+    "_id" : ObjectId("5b5f9809b3b55c557c1ec871"), 
+    "speechId" : NumberInt(44), 
+    "start" : 1532991497.373874, 
+    "end" : 1532991502.9499571, 
+    "text" : "So system ", 
+    "location" : [
+        0.5147882119997698, 
+        0.38882793512307995, 
+        0.043832918316918185
+    ], 
+    "confidence" : 0.9967348629665169
+},
+{ 
+    "_id" : ObjectId("5b5f9817b3b55c557c1ed29b"), 
+    "speechId" : NumberInt(45), 
+    "start" : 1532991511.6267445, 
+    "end" : 1532991520.2905664, 
+    "text" : "The words and then to it ", 
+    "location" : [
+        -0.9002613624110553, 
+        0.3663807833593795, 
+        0.22077218071567511
+    ], 
+    "confidence" : 0.9976102575656229
+},
+{ 
+    "_id" : ObjectId("5b5f982eb3b55c557c1ee313"), 
+    "speechId" : NumberInt(46), 
+    "start" : 1532991534.6591272, 
+    "end" : 1532991550.4139795, 
+    "text" : "That'S the time frame to the tying will we get to the mother ship elsewhere there, but ", 
+    "location" : [
+        0.7377150240430188, 
+        0.38024503812011684, 
+        0.9177878262813459
+    ], 
+    "confidence" : 0.9916476398417273
+},
+{ 
+    "_id" : ObjectId("5b5f983db3b55c557c1eeda4"), 
+    "speechId" : NumberInt(47), 
+    "start" : 1532991549.479479, 
+    "end" : 1532991556.6792183, 
+    "text" : "Just jump to that time wait I, I think ", 
+    "location" : [
+        0.753552387665569, 
+        0.38720411794172516, 
+        0.8762437302077922
+    ], 
+    "confidence" : 0.9922371209921317
+},
+{ 
+    "_id" : ObjectId("5b5f9842b3b55c557c1ef17a"), 
+    "speechId" : NumberInt(48), 
+    "start" : 1532991554.862079, 
+    "end" : 1532991561.3606932, 
+    "text" : "Two time dimensions: making the fifth dimension: ", 
+    "location" : [
+        0.6381811602931654, 
+        0.4221678384733806, 
+        0.041327043535993674
+    ], 
+    "confidence" : 0.99958683504451
+},
+{ 
+    "_id" : ObjectId("5b5f984fb3b55c557c1efa96"), 
+    "speechId" : NumberInt(49), 
+    "start" : 1532991567.6398954, 
+    "end" : 1532991571.436738, 
+    "text" : "And the mother ship ", 
+    "location" : [
+        0.614048112267719, 
+        0.422271877820418, 
+        0.0848585466191337
+    ], 
+    "confidence" : 0.983902935163994
+},
+{ 
+    "_id" : ObjectId("5b5f9854b3b55c557c1efdf7"), 
+    "speechId" : NumberInt(50), 
+    "start" : 1532991572.3692436, 
+    "end" : 1532991584.320271, 
+    "text" : "I was sleeping on the mothership, pretending we were on the broken ship. ", 
+    "location" : [
+        0.7554587108932712, 
+        0.40172653016601867, 
+        0.9403549013566945
+    ], 
+    "confidence" : 0.9894810051251636
+},
+{ 
+    "_id" : ObjectId("5b5f987fb3b55c557c1f1c97"), 
+    "speechId" : NumberInt(51), 
+    "start" : 1532991615.3911495, 
+    "end" : 1532991630.0688832, 
+    "text" : "How can earn, how can mers be real if our eyes aren't real ", 
+    "location" : [
+        -0.6742089332101548, 
+        0.38451954491016715, 
+        1.2739973084632101
+    ], 
+    "confidence" : 0.9653723615247203
+},
+{ 
+    "_id" : ObjectId("5b5f9892b3b55c557c1f2a60"), 
+    "speechId" : NumberInt(52), 
+    "start" : 1532991634.7224343, 
+    "end" : 1532991639.547525, 
+    "text" : "Thank ", 
+    "location" : [
+        -0.42045432391297516, 
+        0.442548272601153, 
+        1.2003315900750327
+    ], 
+    "confidence" : 0.9791730254261415
+},
+{ 
+    "_id" : ObjectId("5b5f9898b3b55c557c1f2e5a"), 
+    "speechId" : NumberInt(53), 
+    "start" : 1532991640.3842869, 
+    "end" : 1532991646.3902194, 
+    "text" : "Bad ", 
+    "location" : [
+        -0.38629658886965756, 
+        0.4524379864284472, 
+        1.1768168865527504
+    ], 
+    "confidence" : 0.9946720382575633
+},
+{ 
+    "_id" : ObjectId("5b5f989fb3b55c557c1f33aa"), 
+    "speechId" : NumberInt(54), 
+    "start" : 1532991647.8653002, 
+    "end" : 1532991657.2790885, 
+    "text" : "She ", 
+    "location" : [
+        -0.3992025116339379, 
+        0.4466029295386689, 
+        1.1476675816009205
+    ], 
+    "confidence" : 0.9985122025209074
+},
+{ 
+    "_id" : ObjectId("5b5f98a7b3b55c557c1f38fa"), 
+    "speechId" : NumberInt(55), 
+    "start" : 1532991655.3502614, 
+    "end" : 1532991662.7733903, 
+    "text" : "It was a good like this ", 
+    "location" : [
+        0.8034185299396169, 
+        0.4208594614226212, 
+        0.9205733892327483
+    ], 
+    "confidence" : 0.970605977957596
+},
+{ 
+    "_id" : ObjectId("5b5f98bdb3b55c557c1f4930"), 
+    "speechId" : NumberInt(56), 
+    "start" : 1532991677.9617577, 
+    "end" : 1532991685.4706688, 
+    "text" : "This isn't a ", 
+    "location" : [
+        -0.9554630570323223, 
+        0.3542056453449709, 
+        0.39233538721778716
+    ], 
+    "confidence" : 0.9966331133218078
+},
+{ 
+    "_id" : ObjectId("5b5f98c8b3b55c557c1f509c"), 
+    "speechId" : NumberInt(57), 
+    "start" : 1532991688.3798869, 
+    "end" : 1532991694.184358, 
+    "text" : "You guys hit right on them all yeah yeah ", 
+    "location" : [
+        -0.7283792636148654, 
+        0.38860297163510127, 
+        1.1570437510032971
+    ], 
+    "confidence" : 0.9749865506128818
+},
+{ 
+    "_id" : ObjectId("5b5f98cfb3b55c557c1f55d1"), 
+    "speechId" : NumberInt(58), 
+    "start" : 1532991695.6474755, 
+    "end" : 1532991709.2012157, 
+    "text" : "Question mark I like the menu each point at the ", 
+    "location" : [
+        -0.7267221646445959, 
+        0.3988682317200431, 
+        1.1479341122975777
+    ], 
+    "confidence" : 0.9872051879548368
+},
+{ 
+    "_id" : ObjectId("5b5f98e4b3b55c557c1f6445"), 
+    "speechId" : NumberInt(59), 
+    "start" : 1532991715.9830723, 
+    "end" : 1532991727.9700046, 
+    "text" : "That we have more information in ways we can like cut into three five minutes on the last information. ", 
+    "location" : [
+        -0.5898946998710365, 
+        0.33376121138123427, 
+        1.1165581702350853
+    ], 
+    "confidence" : 0.9879376296645411
+},
+{ 
+    "_id" : ObjectId("5b5f98f2b3b55c557c1f7039"), 
+    "speechId" : NumberInt(60), 
+    "start" : 1532991730.3306887, 
+    "end" : 1532991735.6175458, 
+    "text" : "I'M talking about aliens, we concluded that it ", 
+    "location" : [
+        -0.6643083824417242, 
+        0.3872850103801908, 
+        1.243782814178448
+    ], 
+    "confidence" : 0.9572631095525642
+},
+{ 
+    "_id" : ObjectId("5b5f98f4b3b55c557c1f71c6"), 
+    "speechId" : NumberInt(61), 
+    "start" : 1532991732.500883, 
+    "end" : 1532991746.4266286, 
+    "text" : "All the dream - and we just had to wait because of the yeah yeah - we were coming up with murder stories. ", 
+    "location" : [
+        0.5767293008011521, 
+        0.40918449936896417, 
+        0.04096322778576206
+    ], 
+    "confidence" : 0.9893201408754438
+},
+{ 
+    "_id" : ObjectId("5b5f98fdb3b55c557c1f782d"), 
+    "speechId" : NumberInt(62), 
+    "start" : 1532991741.505793, 
+    "end" : 1532991758.863357, 
+    "text" : "Dozens and probably for people of the on the crew, we had to kill two people, because that was the only option because there were two of them had to die. Yeah there's only ", 
+    "location" : [
+        -0.6567465045780424, 
+        0.39732986261171693, 
+        1.2429799545377263
+    ], 
+    "confidence" : 0.9794761623301425
+},
+{ 
+    "_id" : ObjectId("5b5f9906b3b55c557c1f7edc"), 
+    "speechId" : NumberInt(63), 
+    "start" : 1532991750.8587718, 
+    "end" : 1532991756.7350507, 
+    "text" : "Two oxygen deadlines and ", 
+    "location" : [
+        -0.6066780956344033, 
+        0.3382501239558889, 
+        1.087134786564685
+    ], 
+    "confidence" : 0.9791086978810547
+},
+{ 
+    "_id" : ObjectId("5b5f991ab3b55c557c1f8c9c"), 
+    "speechId" : NumberInt(64), 
+    "start" : 1532991770.0913203, 
+    "end" : 1532991778.6853287, 
+    "text" : "When we start talking about, murder, may take sometime to ", 
+    "location" : [
+        -0.6764858504239535, 
+        0.3736944287407864, 
+        1.1537733242342527
+    ], 
+    "confidence" : 0.9643844034418627
+},
+{ 
+    "_id" : ObjectId("5b5f9927b3b55c557c1f95f8"), 
+    "speechId" : NumberInt(65), 
+    "start" : 1532991783.197258, 
+    "end" : 1532991787.8617792, 
+    "text" : "In places like they do, we ", 
+    "location" : [
+        -0.8936417828795427, 
+        0.3781999985278736, 
+        0.23493814473081348
+    ], 
+    "confidence" : 0.970231983068348
+},
+{ 
+    "_id" : ObjectId("5b5f992fb3b55c557c1f9c06"), 
+    "speechId" : NumberInt(66), 
+    "start" : 1532991791.697518, 
+    "end" : 1532991795.7187598, 
+    "text" : "Yeah desert him know that ", 
+    "location" : [
+        -0.5870012302720985, 
+        0.3265695062896005, 
+        1.105148966488915
+    ], 
+    "confidence" : 0.9689500278222711
+},
+{ 
+    "_id" : ObjectId("5b5f9949b3b55c557c1faeac"), 
+    "speechId" : NumberInt(67), 
+    "start" : 1532991817.8186371, 
+    "end" : 1532991826.6599848, 
+    "text" : "The dragons are, did drag ", 
+    "location" : [
+        -0.6860585927821679, 
+        0.38115122068225943, 
+        1.159405356597827
+    ], 
+    "confidence" : 0.9827445895516281
+},
+{ 
+    "_id" : ObjectId("5b5f9973b3b55c557c1fd184"), 
+    "speechId" : NumberInt(68), 
+    "start" : 1532991859.019415, 
+    "end" : 1532991880.805133, 
+    "text" : "Needs that that, to our thinking as well, see you guys later ", 
+    "location" : [
+        -0.6838019422065383, 
+        0.3643144212062914, 
+        1.0909435325131158
+    ], 
+    "confidence" : 0.9918587176232987
+},
+{ 
+    "_id" : ObjectId("5b5f997cb3b55c557c1fd821"), 
+    "speechId" : NumberInt(69), 
+    "start" : 1532991868.2975936, 
+    "end" : "", 
+    "text" : "", 
+    "location" : [
+        -0.8228601628697743, 
+        0.3732251817466805, 
+        0.254026447385022
+    ], 
+    "confidence" : 0.9918587176232987
+},]
