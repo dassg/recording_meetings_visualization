@@ -1,9 +1,9 @@
 
-load("/home/vonnegut/Downloads/database/user_1.json");
-load("/home/vonnegut/Downloads/database/user_0.json");
-load("/home/vonnegut/Downloads/database/user_2.json");
-load("/home/vonnegut/Downloads/database/user_3.json");
-load("/home/vonnegut/Downloads/database/speech.json");
+load("Your path here/database/user_1.json");
+load("/Your path here/database/user_0.json");
+load("Your path here/database/user_2.json");
+load("Your path here/database/user_3.json");
+load("Your path heredatabase/speech.json");
 var users = [user_0,user_1,user_2,user_3];
 
 var speech_data = [];
