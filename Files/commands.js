@@ -1,9 +1,9 @@
 
-load("Your path here/database/user_1.json");
-load("/Your path here/database/user_0.json");
-load("Your path here/database/user_2.json");
-load("Your path here/database/user_3.json");
-load("Your path heredatabase/speech.json");
+load("/home/vonnegut/Downloads/database/user_1.json");
+load("/home/vonnegut/Downloads/database/user_0.json");
+load("/home/vonnegut/Downloads/database/user_2.json");
+load("/home/vonnegut/Downloads/database/user_3.json");
+load("/home/vonnegut/Downloads/database/speech.json");
 var users = [user_0,user_1,user_2,user_3];
 
 var speech_data = [];
@@ -42,7 +42,7 @@ for(i = 0; i < speech.length; i++)
     }
     else if(m == 2)
     {
-        user_name = "Zhuo";
+        user_name = "Jingfei";
     }
     else if(m == 3)
     {
@@ -61,4 +61,5 @@ for(i = 0; i < speech.length; i++)
 
 ///// Database insertion
 // replace test with collection name!
-// for(i = 0; i < speech_data.length; i++) {db.test.insert(speech_data[i])}
+
+for(i = 0; i < speech_data.length; i++) {db.test.testcollec.insert(speech_data[i])}
