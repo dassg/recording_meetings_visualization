@@ -242,7 +242,11 @@
                         .text("tooltip");
 
         var timer_var1 = [],timer_var2 = [];
+        var timer_rets1 = [], timer_rets2 = [];
+        var silent_idx = [];
         var timer_count = 0;
+        var timer_rets_count = 0;
+      
         var itr = 0;
         var alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
         //http://bl.ocks.org/jfreyre/b1882159636cc9e1283a
@@ -270,6 +274,10 @@
         var max_times_spoken = 0;
         var min_times_spoken = Infinity;
         var min_speaker = 0;
+        var meeting_ind = 20;
+        var zonda = [];
+      
+        for(ui = 0; ui < total_time_num; ui++){zonda[ui] = [];}
       
         for(var iii = 0; iii < numParticipants; iii++  )
         { 
@@ -422,43 +430,62 @@
                      
           }
         
-        if(t > total_time_num - 5)
+        if(t > meeting_ind && t < (meeting_ind+20))
         {
           
-      var ty1 = setInterval(function(t){circleData[min_speaker].style("fill","green");},400);
-      var ty2 = setInterval(function(t){circleData[min_speaker].style("fill","blue");},800);
-          
-          console.log(ty1)
-          console.log(ty2)
-          
-      timer_var1[timer_count] = ty1;
-      timer_var2[timer_count] = ty2;
-          
-          timer_count++;
-      
-        }  
-        else    
-        {
-
-          for(var ti = 0; ti < timer_var1.length; ti++)
+          if(zonda[t].length == 0)
           {
-          
-            clearInterval(timer_var1[ti]);
-            clearInterval(timer_var2[ti]);
-        
-          }
-          timer_var1 = [];
-          timer_var2 = [];
-          timer_count = 0;
-          
-//          update_color_radius(color_mat.subset(math.index(min_speaker,t)),rad_mat.subset(math.index(min_speaker,t)),min_speaker);
 
+          calc_spoken_stats(t);
+          
+            for(var u = 0; u < zonda[t].length;u++)
+                {
+                  circleData[zonda[t][u]].style("fill","cyan");
+                  //.transition()
+                  
+                  // .duration(200);
+            }
+          }
+          
+         for(var b = 0; b < numParticipants; b++)
+          {
+            if(b!=zonda[t][u])
+            {
+
+              circleData[b].style("fill",color_mat.subset(math.index(b,t)));
+                //.transition()
+                
+                //.duration(100);
+              
+            }
+          }
+          
+            for(var u = 0; u < zonda[t].length;u++)
+            {
+                  circleData[zonda[t][u]].style("fill","cyan");
+                    //.transition()
+                    
+              //.duration(100);
+            }
+
+            
+        }
+        else
+        {
+          for(var b = 0; b < numParticipants; b++)
+          {
+              circleData[b].style("fill",color_mat.subset(math.index(b,t)));
+              
+          }
         }
         
         var h; 
         for(h = 0; h < numParticipants; h++)
         {
-          update_color_radius(color_mat.subset(math.index(h,t)),rad_mat.subset(math.index(h,t)),h);
+            if(t > meeting_ind && t < (meeting_ind+20) && (!((zonda[t][u]).some( ho => ho == h) )) )
+            {
+              update_color_radius(color_mat.subset(math.index(h,t)),rad_mat.subset(math.index(h,t)),h);
+            }
           if(curr_mat.subset(math.index(h,t)) == 1)
           {
           currently(h);
@@ -794,7 +821,7 @@
       function reduction(val,ele)
       {return val+ele;}
       
-    function format_text(object,sentences,width,x,y)
+      function format_text(object,sentences,width,x,y)
       {
     var words = sentences.split(" ");
     var containers=[];
@@ -821,6 +848,48 @@
     }
     return containers.length;
 }
+      
+      function calc_spoken_stats(t)
+      {
+        var time_spoken_curr = [];
+        var pfx = [];
+        var iter = 0;
+        var m = 0,v = 0,sd = 0;
+        var sdint = 2;
+        var step = 0.2;
+        
+        for(iter = 0;iter < numParticipants; iter++ )
+        {
+        time_spoken_curr[iter] = get_t_upto_curr_time(t,iter);
+        }
+        
+        var sfx = (a,b) => a+b;
+        var tot = time_spoken_curr.reduce(sfx);      
+        for(iter = 0; iter < numParticipants; iter++ )
+        {
+        pfx[iter] = time_spoken_curr[iter] / tot;
+        m += pfx[iter] * (iter+1);
+        v += (iter+1 - m)*(iter+1 - m)*(pfx[iter]);
+        }
+        sd = math.sqrt(v);
+       
+        while(((m - (sdint)*sd > 0) && (pfx.filter(lw => m - (sdint)*sd > lw )).length > 0 ) && ( (pfx.filter(lw => m - (sdint)*sd
+ > lw )).filter(lk => lk == 0).length < (pfx.filter(lw => m - (sdint)*sd > lw )).length )){ sdint+=step;}sdint-=step;
+        
+        var silent_folk = pfx.filter(kw => (m - (sdint)*sd > kw) && (kw != 0) );
+        silent_idx = [];
+        
+        console.log(silent_idx);
+        
+        for(var s = 0; s < silent_folk.length; s++)
+        {
+        silent_idx[s] = pfx.indexOf(silent_folk[s]);
+        }
+        zonda[t] = silent_idx;
+        
+      }
+      
+      
       
         // ourRequest.send();
     </script>
