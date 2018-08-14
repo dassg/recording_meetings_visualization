@@ -274,8 +274,8 @@ test_data[nn++] = { speech: speech_data[i].speech, name:speech_data[i].name, use
         var max_times_spoken = 0;
         var min_times_spoken = Infinity;
         var min_speaker = 0;
-        var meeting_ind = 50;
-        var stat_dur = 100;
+        var meeting_ind = 0;
+        var stat_dur = 560  ;
       
         var zonda = [];
       
@@ -357,7 +357,10 @@ test_data[nn++] = { speech: speech_data[i].speech, name:speech_data[i].name, use
             //  prev_mat[test_data[labels[t]].userID][t] = 1;
             }
             // A[1][2]=0
+        if(t < time_acc[time_acc.length-2])
+           {
            curr_mat.subset(math.index(userID_test[labels[t]],t),1);
+      }
            // curr_mat[test_data[labels[t]].userID][t] = 1;
         
         for(k = 0; k < numParticipants; k++)
@@ -429,6 +432,14 @@ test_data[nn++] = { speech: speech_data[i].speech, name:speech_data[i].name, use
           if(t == total_time_num || t == 0)
           {
           previously_remove();
+            
+            if(t == 0)
+            {
+            for(var u = 0; u < numParticipants;u++)
+                {
+                  circleData[u].style("stroke","black");
+            }            
+            }
                      
           }
         
@@ -488,9 +499,10 @@ test_data[nn++] = { speech: speech_data[i].speech, name:speech_data[i].name, use
             {
               update_color_radius(color_mat.subset(math.index(h,t)),rad_mat.subset(math.index(h,t)),h);
             }
-          if(curr_mat.subset(math.index(h,t)) == 1)
+          if(curr_mat.subset(math.index(h,t)) == 1 && (t!=0) && (t < total_time_num - 1))
           {
           currently(h);
+
           //update_color_radius(color_mat.subset(math.index(h,t)),rad_mat.subset(math.index(h,t)),h);
           }
           else if(prev_mat.subset(math.index(h,t)) == 1)
@@ -532,6 +544,7 @@ test_data[nn++] = { speech: speech_data[i].speech, name:speech_data[i].name, use
                                 .attr("r", 25)
                                 .attr("id", i)
                                 .style("stroke", "black")
+                                .style("stroke-width","1.5px")
                                 .style("fill",colors(0))
                                 .style("padding", 2)
                                 .on("mouseover", function() {
@@ -697,8 +710,8 @@ test_data[nn++] = { speech: speech_data[i].speech, name:speech_data[i].name, use
             //participantSpeak[i]++;
             //participantTime[i]+= timesec;
           
-            circleData[i].style("stroke","red");
-        //    .style("stroke-width", "5px");
+            circleData[i].style("stroke","red")
+            .style("stroke-width", "1.5px");
          
             // increase one unit of radius every minute
             // every second then increases 1/60th of a unit, slow progression
@@ -710,8 +723,8 @@ test_data[nn++] = { speech: speech_data[i].speech, name:speech_data[i].name, use
       function not_currently_previous(i)
       {
       circleData[i]
-        .style("stroke","black");
-       // .style("stroke-width","1px");
+        .style("stroke","black")
+        .style("stroke-width","1.5px");
       }
       
       
@@ -734,8 +747,8 @@ test_data[nn++] = { speech: speech_data[i].speech, name:speech_data[i].name, use
 
           previously_remove();
           
-          circleData[i].style("stroke", "lightpink");
-                  //      .style("stroke-width", "5px");
+          circleData[i].style("stroke", "lightpink")
+                        .style("stroke-width", "1.5px");
                 // data[i].style("fill", colors[5]);
                
        //        var ls = sti.length;
@@ -759,7 +772,7 @@ test_data[nn++] = { speech: speech_data[i].speech, name:speech_data[i].name, use
                 // .attr("id","rect_box")
                 // .attr("border", "1px solid black");
           
-                  var multi_lines=format_text(svgContainer,test_data[userID_test[search_list(time_acc,t)]].speech,25,parseInt(x_r) + 35,parseInt(y_r) + 50);
+                  var multi_lines=format_text(svgContainer,test_data[search_list(time_acc,t)].speech,25,parseInt(x_r) + 35,parseInt(y_r) + 50);
 
                   svgContainer.append("rect")
                   .attr("x", parseInt(x_r) + 30)
@@ -853,12 +866,21 @@ test_data[nn++] = { speech: speech_data[i].speech, name:speech_data[i].name, use
       
       function calc_spoken_stats(t)
       {
+        
+        if(t <= timeSpoken[0])
+        {
+        silent_idx = [];
+        for(var g = 0; g < numParticipants; g++) { if(userID_test[0]!=g){silent_idx.push(g); }}
+          zonda[t] = silent_idx;
+          return;
+        }
+        
         var time_spoken_curr = [];
         var pfx = [];
         var iter = 0;
         var m = 0,v = 0,sd = 0;
-        var sdint = 2;
-        var step = 0.2;
+        var sdint = 1;
+        var step = 0.01;
         
         for(iter = 0;iter < numParticipants; iter++ )
         {
@@ -882,9 +904,9 @@ test_data[nn++] = { speech: speech_data[i].speech, name:speech_data[i].name, use
         var silent_folk = pfx.filter(kw => (m - (sdint)*sd > kw) );
         silent_idx = [];
         var cnt_final = 0;
+       
         
-        console.log(silent_idx);
-
+        
        for(var f = 0; f < silent_folk.length; f++)
         {
           
