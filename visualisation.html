@@ -17,6 +17,26 @@
         }
     </style>
     <title>Visualization</title>
+  
+    <svg width="300" height="200">
+  <defs>
+    <marker
+      id="arrow"
+      markerUnits="strokeWidth"
+      markerWidth="12"
+      markerHeight="12"
+      viewBox="0 0 12 12"
+      refX="6"
+      refY="6"
+      orient="auto">
+      <path d="M2,2 L10,6 L2,10 L6,6 L2,2" style="fill: #000;"></path>
+    </marker>
+  </defs>
+  
+<!-- <line x1="0" y1="0" x2="200" y2="50"  stroke="red" stroke-width="2" marker-end="url(#arrow)"/> -->
+
+<!-- <path d="M20,70 T80,100 T160,80 T200,90" fill="white" stroke="red" stroke-width="2" marker-start="url(#arrow)" marker-mid="url(#arrow)" marker-end="url(#arrow)"/> -->
+</svg>
 </head>
 <body>
   <h1>Meeting Analysis</h1>
@@ -31,6 +51,137 @@
   <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
   <script src="https://d3js.org/d3-fetch.v1.min.js"></script>  
   <script src="math.js" type="text/javascript"></script>
+  
+  <body>
+
+<!--   
+  
+  <div class='speakl'>
+<div class='speak-tit'></div>
+<div class='speak-scal'>
+  <ul class='speak-lab'>
+    <li><span style='background:#F1EEF6;'></span> </li>
+    <li><span style='background:#BDC9E1;'></span></li>
+    <li><span style='background:#74A9CF;'></span></li>
+    <li><span style='background:#2B8CBE;'></span></li>
+    <li><span style='background:#045A8D;'></span></li>
+    <div class='some'><font size="2">Speaking Time</font></div>
+  </ul>
+</div>
+  </div>
+
+<style type='text/css'>
+  div.some{
+    position:absolute;
+    top: 8px;
+    left: 300px;
+  }
+  .speakl .speak-tit {
+    text-align: left;
+    margin-bottom: 328px;
+    font-weight: bold;
+    font-size: 90%;
+    }
+  .speakl .speak-scal ul {
+    margin: 0;
+    margin-left: 400px;
+    padding: 0;
+    float: left;
+    list-style: none;
+    }
+  .speakl .speak-scal ul li {
+    display: block;
+    float: left;
+    width: 50px;
+    margin-bottom: 6px;
+    text-align: center;
+    font-size: 80%;
+    list-style: none;
+    }
+  .speakl ul.speak-lab li span {
+    display: block;
+    float: left;
+    height: 15px;
+    width: 50px;
+    }
+  .speakl .legend-source {
+    font-size: 70%;
+    color: #999;
+    clear: both;
+    }
+  .speakl a {
+    color: #777;
+    }
+</style>
+  
+  
+<div class='colormap'>
+<div class='title'>Color Coding</div>
+    
+<div class='scale'>
+  <ul class='labels'>
+    <li><span style='background:#ff0000;'></span>Currently Speaking</li>
+    <li><span style='background:#ff99dd;'></span>Previously Speaking</li>
+
+    <div class='circles'><b>Circles represent People</b></div>
+  </ul>
+</div>
+
+<style type='text/css'>
+  div.circles {
+    position: absolute;
+    top: 100px;
+    left: 505px;
+ 
+}
+  div.colormap {
+    position: absolute;
+    top: 300px;
+    left: 30px;
+ 
+}
+  .colormap .title {
+    text-align: left;
+    margin-bottom: 40px;
+    margin-left: 500px;
+    font-weight: bold;
+    font-size: 90%;
+    }
+  .colormap .scale ul {
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 0;
+    float: left;
+    list-style: none;
+    }
+  .colormap .scale ul li {
+    font-size: 80%;
+    list-style: none;
+    margin-left: 500px;
+    line-height: 18px;
+    margin-bottom: 2px;
+    }
+  .colormap ul.labels li span {
+    display: block;
+    float: left;
+    height: 16px;
+    width: 30px;
+    margin-right: 10px;
+    margin-left: 0;
+    margin-bottom: 10
+    border: 1px solid #999;
+    }
+  .colormap .legend-source {
+    font-size: 70%;
+    color: #999;
+    clear: both;
+    }
+  .colormap a {
+    color: #777;
+    }
+</style>
+
+   -->
     <script>
         // var ourRequest = new XMLHttpRequest();
         // ourRequest.open('GET', *********FILE_LOCATION***************)
@@ -70,13 +221,7 @@
         // var test_data = d3.json("Speech_Data.json");
       //  var test_data = speech_data;
       
-      
-      
-      
-      
-      
-      
-      
+  
       
 var speech_data = [{"_id":{"$oid":"5b743d4f51195edc1b2e236f"},"speech":"Stellar map because he went on and on the lunar landscape and it is much different from from art and it's a two hundred mile trip. ","time":{"$numberDouble":"17.795912504196167"},"location":[{"$numberDouble":"-0.8267733147006124"},{"$numberDouble":"0.3624002645247594"},{"$numberDouble":"0.17993020065354282"}],"userID":{"$numberInt":"0"},"confidence":{"$numberInt":"1"}},
 {"_id":{"$oid":"5b743d4f51195edc1b2e2370"},"speech":"So without it you could be basically lost. ","time":{"$numberDouble":"8.981914043426514"},"location":[{"$numberDouble":"-0.8265324660692208"},{"$numberDouble":"0.3619074853395206"},{"$numberDouble":"0.18950884292493686"}],"userID":{"$numberInt":"0"},"confidence":{"$numberDouble":"0.9999988964116424"}},
@@ -148,10 +293,7 @@ var speech_data = [{"_id":{"$oid":"5b743d4f51195edc1b2e236f"},"speech":"Stellar 
 {"_id":{"$oid":"5b743d4f51195edc1b2e23b2"},"speech":"Needs that that, to our thinking as well, see you guys later ","time":{"$numberDouble":"21.64819884300232"},"location":[{"$numberDouble":"-0.6838019422065383"},{"$numberDouble":"0.3643144212062914"},{"$numberDouble":"1.0909435325131158"}],"userID":{"$numberInt":"3"},"confidence":{"$numberInt":"1"}},
 {"_id":{"$oid":"5b743d4f51195edc1b2e23b3"},"speech":"","time":{"$numberDouble":"1.6300277709960938"},"location":[{"$numberDouble":"-0.8228601628697743"},{"$numberDouble":"0.3732251817466805"},{"$numberDouble":"0.254026447385022"}],"userID":{"$numberInt":"0"},"confidence":{"$numberInt":"1"}}]
 
-      
-      
-      
-      
+
       
 var test_data = [];
 var nn = 0;
@@ -173,7 +315,7 @@ if(speech_data[i].time.$numberDouble < 0 || speech_data[i].speech == "")
     {
     ra++;
     }
-    else if(ra == 4)
+    else if(ra == 3)
     {
     ra--;
     }
@@ -310,9 +452,10 @@ test_data[nn++] = { speech: speech_data[i].speech, userID:parseInt(speech_data[i
         var min_times_spoken = Infinity;
         var min_speaker = 0;
         var meeting_ind = 0;
-        var stat_dur = 560;
+        var stat_dur = -1;
         var first_time = [];
         var zonda = [];
+        var linepad = 10;
       
         for(ui = 0; ui < total_time_num; ui++){zonda[ui] = [];}
       
@@ -329,7 +472,7 @@ test_data[nn++] = { speech: speech_data[i].speech, userID:parseInt(speech_data[i
         min_times_spoken = temp_spoken;
         }
         }
-        var colors = d3.scaleLinear().domain([1,max_times_spoken+(max_times_spoken*0.06)])
+        var colors = d3.scaleLinear().domain([1,max_times_spoken+(max_times_spoken*0.25)])
                             .interpolate(d3.interpolateHcl)
                             .range([d3.rgb("#FFFFFF"), d3.color("#0000FF")]);
 
@@ -339,16 +482,26 @@ test_data[nn++] = { speech: speech_data[i].speech, userID:parseInt(speech_data[i
         var rad_mat = math.zeros(numParticipants,time_values.length),color_mat = math.zeros(numParticipants,time_values.length), curr_mat = math.zeros(numParticipants,time_values.length),prev_mat = math.zeros(numParticipants,time_values.length);
         var arrow_mat = math.zeros(numParticipants,numParticipants,total_time_num);
         var arrow_track = math.zeros(numParticipants,numParticipants);
-        
-      
+        var arrow_scale = [];
+            
         get_curr_speaking();
         initial_draw(svgContainer,numParticipants,circleData);
 
       var dict_angles=[];
       for(var i=0;i<all_angles.length;i++){dict_angles.push({key: alpha[i],value: all_angles[i]});}
       
-        generate_data(100);
+        generate_data(100); 
       
+        var mxval = 5;
+        var mnval = 0.8;
+        var vals = math.max(arrow_mat);
+        var step = (mxval - mnval) / (vals);
+        
+      for(var z = 0; z < vals+1; z++)
+      {
+      arrow_scale.push( mnval + z*step);
+      }
+
         var timeline = d3.sliderHorizontal()
           .min(0)
           .max(total_time_num + final_pad - 1)
@@ -371,6 +524,105 @@ test_data[nn++] = { speech: speech_data[i].speech, userID:parseInt(speech_data[i
         // currently(i,timesec,ret,rad); 
         // start infinite loop here to update display over and over again
     
+      function get_line_coords(i,j)
+      {
+      
+      var xm,ym,xm1,ym1,xm2,ym2;
+      xm = (parseFloat(circleData[i].attr("cx")) + parseFloat(circleData[j].attr("cx")))/2;
+      ym = (parseFloat(circleData[i].attr("cy")) + parseFloat(circleData[j].attr("cy")))/2;
+      xm1 = (xm + parseFloat(circleData[i].attr("cx")))/2;  
+      ym1 = (ym + parseFloat(circleData[i].attr("cy")))/2;
+      xm2 = (xm + parseFloat(circleData[j].attr("cx")))/2;  
+      ym2 = (ym + parseFloat(circleData[j].attr("cy")))/2;
+      
+      var m = (ym2 - ym1) / (xm2 - xm1);
+      var x1,y1,x2,y2,x3,y3,x4,y4;
+        
+      if(m == -1)
+      {
+      
+      x1 = xm1 + linepad;
+      x2 = xm2 + linepad;
+      y1  = ym1 + linepad; 
+      y2  = ym2 + linepad; 
+      
+      x3 = xm1 - linepad;  
+      x4 = xm2 - linepad;
+      y3 = ym1 - linepad;
+      y4 = ym2 - linepad;
+      }
+        else if(m == Infinity || m == -Infinity)
+        {
+      x1 = xm1 + linepad;
+      x2 = xm2 + linepad;
+      y1  = ym1; 
+      y2  = ym2; 
+      
+      x3 = xm1 - linepad;  
+      x4 = xm2 - linepad;
+      y3 = ym1;
+      y4 = ym2;
+        }
+        else if(m == 1)
+        {
+      x1 = xm1 - linepad;
+      x2 = xm2 - linepad;
+      y1  = ym1 + linepad; 
+      y2  = ym2 + linepad; 
+      
+      x3 = xm1 + linepad;  
+      x4 = xm2 + linepad;
+      y3 = ym1 - linepad;
+      y4 = ym2 - linepad;
+        }
+        else if(m == 0)
+        {
+      x1 = xm1;
+      x2 = xm2 ;
+      y1  = ym1 +linepad; 
+      y2  = ym2 +linepad; 
+      
+      x3 = xm1;  
+      x4 = xm2;
+      y3 = ym1 -linepad;
+      y4 = ym2 -linepad;
+        }
+        else
+        {
+        alert("ERROR");
+        }
+        
+        return [x1,y1,x2,y2,x3,y3,x4,y4];
+        
+      }
+      
+      function draw_line(i,j,width)
+      {
+      var xm,ym,xm1,ym1,xm2,ym2;
+      xm = (parseFloat(circleData[i].attr("cx")) + parseFloat(circleData[j].attr("cx")))/2;
+      ym = (parseFloat(circleData[i].attr("cy")) + parseFloat(circleData[j].attr("cy")))/2;
+      xm1 = (xm + parseFloat(circleData[i].attr("cx")))/2;  
+      ym1 = (ym + parseFloat(circleData[i].attr("cy")))/2;
+      xm2 = (xm + parseFloat(circleData[j].attr("cx")))/2;  
+      ym2 = (ym + parseFloat(circleData[j].attr("cy")))/2;
+        
+        
+      var line = svgContainer.append("line")
+     .attr("x1",xm1)
+     .attr("y1",ym1)  
+     .attr("x2",xm2) 
+     .attr("y2",ym2)  
+     .attr("id","connec_line")
+     .attr("stroke","red")
+     .attr("stroke-width",arrow_scale[width])  
+     .attr("marker-end","url(#arrow)");      
+      }
+      
+      function remove_line()
+      {
+      svgContainer.selectAll("#connec_line").remove();
+      }
+      
       function generate_data(ret)    // generate data
       {
       
@@ -381,49 +633,31 @@ test_data[nn++] = { speech: speech_data[i].speech, userID:parseInt(speech_data[i
         var curr_sec = search_list(time_acc,t);
             if(t > timeSpoken[0]-1)
             {
-              
-              // while((userID_test[curr_sec])==(userID_test[curr_sec - 1]))
-              // { 
-              //   if(curr_sec == 0){break;} curr_sec--;
-              // }
-              
-              // if(curr_sec == 0)
-              // {
-              //  prev_mat.subset(math.index(userID_test[0],t),1);  // previous speaker for that instant
-              // }
-              // else
-              // {
-               prev_mat.subset(math.index(userID_test[curr_sec - 1],t),1);  // previous speaker for that instant}
-              
-              //}
-            // prev_mat.subset(math.index(userID_test[search_list(time_acc,t) - 1],t),1);  // previous speaker for that instant
-            //  prev_mat[test_data[labels[t]].userID][t] = 1;
+               prev_mat.subset(math.index(userID_test[curr_sec - 1],t),1);  // previous speaker for that instant} 
             }
-            // A[1][2]=0
-        // if(t < time_acc[time_acc.length-2])
-        //    {
+        
             curr_mat.subset(math.index(userID_test[labels[t]],t),1);
         //  }
            // curr_mat[test_data[labels[t]].userID][t] = 1;
       
-      //   if(arrow_track.subset(math.index(userID_test[curr_sec],looks[curr_sec])) == 0)
-      //   {
-      //   arrow_mat.subset(math.index(userID_test[curr_sec],looks[curr_sec],t),1);
-      //   arrow_track.subset(math.index(userID_test[curr_sec],looks[curr_sec]),1);
-      //   }
-      //   else if(t > 0)
-      //      {
-      //        var tt = 0, ll = 0;
-      //      for(var T = t; T >=0; T--)
-      //       {
-      //       if(arrow_mat.subset(math.index(userID_test[curr_sec],looks[curr_sec],T)))
-      //       {
-      //       tt = arrow_mat.subset(math.index(userID_test[curr_sec],looks[curr_sec],T)) + 1;
-      //       break;
-      //       }
-      //       }
-      //        arrow_mat.subset(math.index(userID_test[curr_sec],looks[curr_sec],t),tt);
-      // }
+        // if(arrow_track.subset(math.index(userID_test[curr_sec],looks[curr_sec])) == 0)
+        // {
+        // arrow_mat.subset(math.index(userID_test[curr_sec],looks[curr_sec],t),1);
+        // arrow_track.subset(math.index(userID_test[curr_sec],looks[curr_sec]),1);
+        // }
+        // else
+        //    {
+             
+           var tt = 0, ll = 0;
+           var siz = arrow_mat.size();
+           for(var T = t; T < siz[2] ; T++)
+            {
+            tt = arrow_mat.subset(math.index(userID_test[curr_sec],looks[curr_sec],T)) + 1;
+            arrow_mat.subset(math.index(userID_test[curr_sec],looks[curr_sec],T),tt);
+         
+            }
+             
+  //    }
         for(k = 0; k < numParticipants; k++)
             {  
              rad_mat.subset(math.index(k,t),(radius + 1*(ret*(get_sp_upto_curr_time(t,k)/60))));
@@ -459,7 +693,7 @@ test_data[nn++] = { speech: speech_data[i].speech, userID:parseInt(speech_data[i
 
       function print_all_figures(t)
       {
-        console.log("HELLO_A")
+       // remove_line();
         global_time = t;
 
           svgContainer.selectAll("circle")  
@@ -499,12 +733,12 @@ test_data[nn++] = { speech: speech_data[i].speech, userID:parseInt(speech_data[i
           if(o != ud)
           {
           circleData[o].style("stroke", "black")
-                      .style("stroke-width","1.5px");
+                      .style("stroke-width","3px");
           }
           }
           
           circleData[ud].style("stroke", "lightpink")
-                        .style("stroke-width", "1.5px");
+                        .style("stroke-width", "3px");
         var imp_info = format_text(svgContainer,test_data[test_data.length-1].speech,dict_angles,ud,radius+rad_boost);
          
         }
@@ -572,18 +806,28 @@ test_data[nn++] = { speech: speech_data[i].speech, userID:parseInt(speech_data[i
           }
         }
         
-        console.log("HELLO_B");
-          
+
         for(var h = 0; h < numParticipants; h++)
         {
           if( ((t > meeting_ind) && t < (meeting_ind+stat_dur)) && (!zonda[t].includes(h)) )
           {
             update_color_radius(color_mat.subset(math.index(h,t)),rad_mat.subset(math.index(h,t)),h);
           }
-
+    
+          for(var k = 0; k < numParticipants; k++)
+          {
+            
+            if(h == k)
+            {
+            continue;
+            }
+            
+          d3.select("#line"+String(h)+String(k)).attr("stroke-width",arrow_scale[ arrow_mat.subset(math.index(h,k,t)) ]);
+          }
+          
           if(curr_mat.subset(math.index(h,t)) == 1 && (t!=0) && (t < total_time_num - 1))
           {
-          currently(h);
+          currently(h,t);
           }
           
           if(prev_mat.subset(math.index(h,t)) == 1)
@@ -629,7 +873,7 @@ test_data[nn++] = { speech: speech_data[i].speech, userID:parseInt(speech_data[i
                                 .attr("r", 25)
                                 .attr("id", i)
                                 .style("stroke", "black")
-                                .style("stroke-width","1.5px")
+                                .style("stroke-width","3px")
                                 .style("fill",colors(0))
                                 .style("padding", 2)
                                 .on("mouseover", function() {
@@ -666,9 +910,46 @@ test_data[nn++] = { speech: speech_data[i].speech, userID:parseInt(speech_data[i
                                 .on("mouseout", function() {
                                     return tooltip.style("visibility", "hidden");
                                 });;
-            
+          
+                   
         }
 
+          
+          for(var i = 0; i < numParticipants; i++)
+          {
+           for(var j = 0; j < numParticipants; j++)
+          {
+            if(i == j)
+            {
+            continue;
+            }
+            var lc = get_line_coords(i,j);
+
+            var line = svgContainer.append("line")
+           .attr("x1",lc[0])
+           .attr("y1",lc[1])
+           .attr("x2",lc[2])
+           .attr("y2",lc[3])
+           .attr("id","line"+String(i)+String(j))
+           .attr("stroke","black")
+           .attr("stroke-width",mnval)  
+           .attr("marker-end","url(#arrow)");     
+            
+            
+            var line2 = svgContainer.append("line")
+           .attr("x1",lc[6])
+           .attr("y1",lc[7])
+           .attr("x2",lc[4])
+           .attr("y2",lc[5])
+           .attr("id","line"+String(j)+String(i))
+           .attr("stroke","black")
+           .attr("stroke-width",mnval)  
+           .attr("marker-end","url(#arrow)");     
+          
+          }
+
+          }
+          
         }
                             
         // function will be passed the id of the person currently speaking
@@ -789,27 +1070,25 @@ test_data[nn++] = { speech: speech_data[i].speech, userID:parseInt(speech_data[i
         return tot_count;
       }
       
-        function currently(i) 
-      {
-            
-            //participantSpeak[i]++;
-            //participantTime[i]+= timesec;
-          
-            circleData[i].style("stroke","red")
-            .style("stroke-width", "1.5px");
-         
-            // increase one unit of radius every minute
-            // every second then increases 1/60th of a unit, slow progression
-            // assuming all individual conversation snippets do not exceed 15-20 seconds      
-            // display previously spoken text here?
-
-        }
+        function currently(i,t) 
+      {  
+        circleData[i].style("stroke","red")
+        .style("stroke-width", "3px");
+        
+        // var cs = search_list(time_acc,t);
+        // if(arrow_mat.subset(math.index(i,looks[cs],t)))
+        // {
+        // d3.select("#line"+String(i)+String(looks[cs])).attr("stroke-width",arrow_scale[ arrow_mat.subset(math.index(i,looks[cs],t)) ])
+        // //draw_line(i,looks[cs],arrow_mat.subset(math.index(i,looks[cs],t)));
+        // }
+        
+      }
         
       function not_currently_previous(i)
       {
       circleData[i]
         .style("stroke","black")
-        .style("stroke-width","1.5px");
+        .style("stroke-width","3px");
       }
       
       
@@ -833,7 +1112,7 @@ test_data[nn++] = { speech: speech_data[i].speech, userID:parseInt(speech_data[i
           previously_remove();
           
           circleData[i].style("stroke", "lightpink")
-                        .style("stroke-width", "1.5px");
+                        .style("stroke-width", "3px");
                 // data[i].style("fill", colors[5]);
                
        //        var ls = sti.length;
@@ -1042,8 +1321,6 @@ test_data[nn++] = { speech: speech_data[i].speech, userID:parseInt(speech_data[i
         silent_idx = [];
         var cnt_final = 0;
        
-        
-        
        for(var f = 0; f < silent_folk.length; f++)
         {
           
